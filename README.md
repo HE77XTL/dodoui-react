@@ -13,3 +13,17 @@
 2、[TypeScript](https://www.tslang.cn/)  
 3、[webpack](https://webpack.js.org/)  
 
+### 2、webpack 配置
+核心概念  
+
+入口(entry)  
+输出(output)  
+loader  
+插件(plugins)  
+详见webpack.config.js    
+[参考资料](https://www.webpackjs.com/concepts/) 
+
+### 3、TypeScript 配置
+[参考资料](https://www.tslang.cn/docs/handbook/compiler-options.html)
+ 
+
