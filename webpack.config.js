@@ -25,7 +25,30 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'
-            }
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                strictMath: true,
+                            },
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+            },
         ]
     }
 };
