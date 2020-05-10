@@ -12,6 +12,7 @@
 1、[React](https://zh-hans.reactjs.org/)    
 2、[TypeScript](https://www.tslang.cn/)  
 3、[webpack](https://webpack.js.org/)  
+4、[Jest](https://jestjs.io/zh-Hans/)  
 
 ### 2、webpack 配置
 核心概念  
@@ -26,4 +27,7 @@ loader
 ### 3、TypeScript 配置
 [参考资料](https://www.tslang.cn/docs/handbook/compiler-options.html)
  
-
+### 4、测试框架Jest 配置
+[参考资料](https://jestjs.io/docs/zh-Hans/tutorial-react)    
+[中文参考资料](https://doc.ebichu.cc/jest/docs/zh-Hans/configuration.html#content)   
+css 和文件（如图片，svg文件等）等静态资源，mock [配置参考](https://doc.ebichu.cc/jest/docs/zh-Hans/webpack.html)
