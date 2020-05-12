@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
         index: './lib/index.tsx'//入口文件
@@ -13,13 +12,6 @@ module.exports = {
         library: "dodoui-react",
         libraryTarget: 'umd'
     },
-    plugins: [
-        // 使用html-webpack-plugin  https://webpack.docschina.org/plugins/html-webpack-plugin/
-        new HtmlWebpackPlugin({
-            title: "DoDoUI-React",
-            template: "index.html"
-        })
-    ],
     module: {
         rules: [
             {
