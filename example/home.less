@@ -1,0 +1,37 @@
+:root {
+  --color-main: #2a80eb;
+}
+body {
+  margin: 0;
+}
+
+.homeDocument {
+  .homeHeader {
+    height: 60px;
+    box-sizing: border-box;
+    padding: 0 12px;
+    box-shadow: 0 2px 8px #f0f1f2, inset 0 -1px #f0f1f2;
+    display: flex;
+    align-items: center;
+
+    .title {
+      color: var(--color-main);
+      flex: 1;
+    }
+  }
+
+  > .homeContent {
+    display: flex;
+    padding-top: 8px;
+    >aside {
+      padding: 0 16px;
+      width: 199px;
+      border-right: solid 1px var(--color-main);
+      overflow: auto;
+      overscroll-behavior: contain
+    }
+    .homeMain {
+      min-height: calc(100vh - 77px);
+    }
+  }
+}

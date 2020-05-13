@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = {
     entry: {
         index: './lib/index.tsx'//入口文件
@@ -12,6 +13,11 @@ module.exports = {
         library: "dodoui-react",
         libraryTarget: 'umd'
     },
+    devServer: {
+        hot: true,
+        historyApiFallback: true,
+    },
+    plugins: [],
     module: {
         rules: [
             {
