@@ -3,10 +3,9 @@
 module.exports = {
     verbose: true,
     clearMocks: false,
-    reporters: ["default"],
-
-    collectCoverage: false,
-
+    collectCoverage: false,// 是否收集测试覆盖率
+    reporters: ["jest-junit"],
+    coverageReporters: ['text', 'lcov'],
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
     moduleDirectories: ['node_modules'],
     globals: {
