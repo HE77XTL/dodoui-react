@@ -15,7 +15,7 @@ describe('我的第一个测试用例', () => {
 
 describe('icon', () => {
     it('是个 div', () => {
-        const json = renderer.create(<Icon/>).toJSON();
+        const json = renderer.create(<Icon name='qq'/>).toJSON();
         expect(json).toMatchSnapshot()
     })
 });

@@ -1,12 +1,13 @@
 import * as React from "react";
+import Icon from "../lib/icon/icon";
 
 
 function IconExample() {
     return (
         <div>
-            <svg className='dodo-icon'>
-                <use xlinkHref='#qq'/>
-            </svg>
+            <Icon name='qq' className='test1' />
+            <Icon name='wechat' className='test2 test3'/>
+            <Icon name='alipay' className='' onClick={() => {console.log(1)}} />
         </div>
     );
 }

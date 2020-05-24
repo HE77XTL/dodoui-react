@@ -34,6 +34,7 @@ ReactDOM.render(
                     <Switch>
                         <Route path="/">
                             <div>home</div>
+                            <IconExample/>
                         </Route>
                         <Route path="/icon" component={IconExample}/>
                     </Switch>

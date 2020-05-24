@@ -9,6 +9,7 @@ yarn-debug.log*
 yarn-error.log*
 
 deploy.sh
+junit.xml
 
 # Runtime data
 pids

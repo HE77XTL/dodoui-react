@@ -1,15 +1,20 @@
 import React from "react";
 import "./icon.less";
 import "./importAllIcon";
+import classes from '../helpers/classes'
 
-function Icon() {
+interface IconProps extends React.SVGAttributes<SVGGElement> {
+    name: string
+}
+
+const Icon: React.FunctionComponent<IconProps> =  ({className,name, ...resetProps}) => {
     return (
         <div>
-            <svg className='dodo-icon'>
-                <use xlinkHref='#qq'/>
+            <svg className={classes('dodo-icon', className)} {...resetProps}>
+                <use xlinkHref={`#${name}`}/>
             </svg>
         </div>
     );
-}
+};
 
 export default Icon;
