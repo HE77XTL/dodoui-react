@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import IconExample from "./example/IconExample";
 import "./example/home.less";
+import DialogExample from "./example/DialogExample";
 
 ReactDOM.render(
     <Router>
@@ -22,20 +23,19 @@ ReactDOM.render(
                 <aside>
                     <dl className='navList'>
                         <dt className='nav'>
-                            <Link to="/">Basic</Link>
+                            Basic
                         </dt>
                         <dd>
                             <Link to="/icon">icon</Link>
                         </dd>
+                        <dd>
+                            <Link to="/dialog">dialog</Link>
+                        </dd>
                     </dl>
                 </aside>
                 <main className='homeMain'>
-                    <Route path="/">
-                        <div>
-                            home
-                        </div>
-                    </Route>
                     <Route path="/icon" component={IconExample}/>
+                    <Route path="/dialog" component={DialogExample}/>
                 </main>
             </div>
         </div>
