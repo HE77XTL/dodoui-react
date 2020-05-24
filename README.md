@@ -16,6 +16,7 @@
 2、[TypeScript](https://www.tslang.cn/)  
 3、[webpack](https://webpack.js.org/)  
 4、[Jest](https://jestjs.io/zh-Hans/)  
+5、[CircleCI](https://circleci.com/)  
 
 ### 2、webpack 配置
 核心概念  
@@ -34,3 +35,6 @@ loader
 [参考资料](https://jestjs.io/docs/zh-Hans/tutorial-react)    
 [中文参考资料](https://doc.ebichu.cc/jest/docs/zh-Hans/configuration.html#content)   
 css 和文件（如图片，svg文件等）等静态资源，mock [配置参考](https://doc.ebichu.cc/jest/docs/zh-Hans/webpack.html)
+
+### 5、CircleCI配置
+具体参考配置文件，npm 设置里生成Auth Tokens，在CircleCI 中添加环境变量NPM_TOKEN，便可拿到权限自动发布 
