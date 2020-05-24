@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {
-    BrowserRouter as Router,
-    Switch,
+    HashRouter as Router,
     Route,
     Link
 } from "react-router-dom";
@@ -31,14 +30,12 @@ ReactDOM.render(
                     </dl>
                 </aside>
                 <main className='homeMain'>
-                    <Switch>
-                        <Route path="/">
-                            <div>home</div>
-                            <IconExample/>
-                        </Route>
-                        <Route path="/icon" component={IconExample}/>
-                    </Switch>
-
+                    <Route path="/">
+                        <div>
+                            home
+                        </div>
+                    </Route>
+                    <Route path="/icon" component={IconExample}/>
                 </main>
             </div>
         </div>
