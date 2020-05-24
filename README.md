@@ -1,5 +1,8 @@
 # dodoui-react
 
+[![CircleCI](https://circleci.com/gh/HE77XTL/dodoui-react.svg?style=svg)](https://circleci.com/gh/HE77XTL/dodoui-react)
+[![npm version](https://badge.fury.io/js/zoro77uitest001.svg)](https://badge.fury.io/js/zoro77uitest001)
+
 ## React&&TypeScript&&webpack学习-造轮子，及框架搭建
 
 前端作为一个与设计紧密结合的职业，需要足够的面向设计开发理念。
