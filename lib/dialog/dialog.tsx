@@ -23,8 +23,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
     const onClickMask: React.MouseEventHandler = (e) => {
         props.closeOnClickMask && props.onClose(e);
     };
-    return (
-        props.visible &&
+    const result = props.visible &&
         <Fragment>
             <div className={sc("mask")} onClick={onClickMask}/>
             <div className={sc()}>
@@ -43,8 +42,8 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
                     }
                 </footer>
             </div>
-        </Fragment>
-    );
+        </Fragment>;
+    return ( ReactDOM.createPortal(result, document.body))
 };
 
 Dialog.defaultProps = {
