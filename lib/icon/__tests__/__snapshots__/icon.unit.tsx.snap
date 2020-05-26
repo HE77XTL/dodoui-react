@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`icon 是个 div 1`] = `
-<div>
-  <svg
-    className="dodo-icon"
-  >
-    <use
-      xlinkHref="#qq"
-    />
-  </svg>
-</div>
+<svg
+  className="dodo-icon"
+>
+  <use
+    xlinkHref="#qq"
+  />
+</svg>
 `;
