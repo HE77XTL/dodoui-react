@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 import IconExample from "./example/IconExample";
 import "./example/home.less";
-import DialogExample from "./example/DialogExample";
+import DialogExample from "./example/dialogExample";
+import LayoutExample from "./example/layoutExample";
 
 ReactDOM.render(
     <Router>
@@ -31,11 +32,15 @@ ReactDOM.render(
                         <dd>
                             <Link to="/dialog">dialog</Link>
                         </dd>
+                        <dd>
+                            <Link to="/layout">layout</Link>
+                        </dd>
                     </dl>
                 </aside>
                 <main className='homeMain'>
                     <Route path="/icon" component={IconExample}/>
                     <Route path="/dialog" component={DialogExample}/>
+                    <Route path="/layout" component={LayoutExample}/>
                 </main>
             </div>
         </div>
