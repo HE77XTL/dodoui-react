@@ -1,6 +1,7 @@
 :root {
   --color-main: #2a80eb;
 }
+
 body {
   margin: 0;
 }
@@ -23,15 +24,19 @@ body {
   > .homeContent {
     display: flex;
     padding-top: 8px;
-    >aside {
+
+    > aside {
       padding: 0 16px;
       width: 199px;
       border-right: solid 1px var(--color-main);
       overflow: auto;
       overscroll-behavior: contain
     }
+
     .homeMain {
       min-height: calc(100vh - 77px);
+      padding: 12px;
+      flex: 1;
     }
   }
 }
