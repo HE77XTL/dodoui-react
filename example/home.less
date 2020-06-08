@@ -65,10 +65,16 @@ a {
 .dodo-main {
     padding: 12px;
     .demoCode {
-        border: solid 1px @gray-color;
-        padding: 8px;
+        display: flex;
         font-size: 16px;
-        box-sizing: border-box;
+        pre {
+            padding: 8px;
+        }
+    }
+    .demoCode::after {
+        content: '';
+        display: block;
+        flex: 1;
     }
 }
 //
