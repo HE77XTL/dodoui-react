@@ -4,10 +4,10 @@ import {
     HashRouter as Router,
     Route, NavLink
 } from "react-router-dom";
-import IconExample from "./example/IconExample";
 import "./example/home.less";
 import DialogExample from "./example/dialogExample";
 import LayoutExample from "./example/layoutExample";
+import IconDemo from "./example/iconDemo";
 
 ReactDOM.render(
     <Router>
@@ -39,7 +39,7 @@ ReactDOM.render(
                 </dl>
             </aside>
             <main className='dodo-main'>
-                <Route path="/icon" component={IconExample}/>
+                <Route path="/icon" component={IconDemo}/>
                 <Route path="/dialog" component={DialogExample}/>
                 <Route path="/layout" component={LayoutExample}/>
             </main>
