@@ -1,42 +1,103 @@
-:root {
-  --color-main: #2a80eb;
-}
+@main-color: #2a80eb;
+@gray-color: #9facba;
+@text-color: #4c5161;
 
 body {
-  margin: 0;
+    margin: 0;
+    color: @text-color;
+}
+a {
+    text-decoration: none;
+    color: @text-color;
 }
 
-.homeDocument {
-  .homeHeader {
-    height: 60px;
+.dodo-site {
+    display: grid;
+    width: 100vw;
+    min-height: 100vh;
     box-sizing: border-box;
+    grid-template-rows: 60px auto 60px;
+    grid-template-columns: 200px auto ;
+    grid-template-areas: 'header header'
+                         'aside main'
+                         'aside footer';
+
+    .dodo-header {
+        grid-area: header;
+    }
+    .dodo-aside {
+        grid-area: aside;
+    }
+    .dodo-main {
+        grid-area: main;
+    }
+    .dodo-footer {
+        grid-area: footer;
+    }
+}
+
+
+
+//header--------------------------------------------
+.dodo-header {
     padding: 0 12px;
     box-shadow: 0 2px 8px #f0f1f2, inset 0 -1px #f0f1f2;
     display: flex;
     align-items: center;
 
     .title {
-      color: var(--color-main);
-      flex: 1;
+        color: @main-color;
+        flex: 1;
     }
-  }
-
-  > .homeContent {
-    display: flex;
-    padding-top: 8px;
-
-    > aside {
-      padding: 0 16px;
-      width: 199px;
-      border-right: solid 1px var(--color-main);
-      overflow: auto;
-      overscroll-behavior: contain
+    .source {
+        height: 30px;
+        line-height: 30px;
+        margin-right: 16px;
+        cursor: pointer;
     }
-
-    .homeMain {
-      min-height: calc(100vh - 77px);
-      padding: 12px;
-      flex: 1;
+    .avatar {
+        width: 30px;
+        border-radius: 15px;
     }
-  }
+}
+
+////main--------------------------------------------
+.dodo-main {
+    padding: 12px;
+}
+//
+.dodo-aside {
+    //border-right: solid 1px @main-color;
+    overflow: auto;
+    overscroll-behavior: contain;
+    //box-shadow: 0 2px 8px #f0f1f2, inset 0 -1px #f0f1f2;
+    box-shadow: 3px 0 7px 0 #e2e5f2, inset 0 -1px #f0f1f2;
+    .navList {
+        dd {
+            margin: 0;
+        }
+
+        dt {
+            padding: 8px;
+            color: @gray-color;
+        }
+        .menuItem {
+            padding: 8px 8px 8px 8px;
+            display: block;
+
+            &.active {
+                background-color: @main-color;
+                color: #fff;
+
+            }
+        }
+
+    }
+;
+}
+
+//
+////footer--------------------------------------------
+.dodo-footer {
+    padding: 12px;
 }
