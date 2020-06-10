@@ -8,6 +8,8 @@ import "./example/home.less";
 import DialogExample from "./example/dialogExample";
 import LayoutExample from "./example/layoutExample";
 import IconDemo from "./example/iconDemo";
+const logo = require("./example/avatar.jpg").default;
+
 
 ReactDOM.render(
     <Router>
@@ -19,7 +21,7 @@ ReactDOM.render(
                        target='_blank'>github</a>
                 </div>
                 <div className='components'>
-                    <img src="./example/avatar.jpg" alt="avatar" className='avatar'/>
+                    <img src={logo} alt="avatar" className='avatar'/>
                 </div>
             </header>
             <aside className='dodo-aside'>
