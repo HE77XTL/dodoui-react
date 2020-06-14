@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = Object.assign({}, base, {
     mode: 'production',
     entry: {
-        index: './example.tsx'//入口文件
+        index: './example/example.tsx'//入口文件
     },
     output: {
         //输出
@@ -16,7 +16,7 @@ module.exports = Object.assign({}, base, {
         // 使用html-webpack-plugin  https://webpack.docschina.org/plugins/html-webpack-plugin/
         new HtmlWebpackPlugin({
             title: "DoDoUI-React",
-            template: "example.html",
+            template: "./example/example.html",
             fileName: "index.html"
         })
     ],

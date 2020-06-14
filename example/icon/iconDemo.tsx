@@ -1,7 +1,7 @@
 import * as React from "react";
-import Demo from "./demo";
+import Demo from "../common/demo";
 import IconExample from "./iconExample";
-import {scopedClassMaker} from "../lib/helpers/classes";
+import {scopedClassMaker} from "../../lib/helpers/classes";
 
 const code = require("!!raw-loader!./iconExample.tsx");
 const sc = scopedClassMaker("doc");

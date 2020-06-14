@@ -3,18 +3,20 @@ import Highlight, {defaultProps} from "prism-react-renderer";
 import {useState} from "react";
 
 interface Props {
-    code: string
+    code: string,
+    codeExpand?: boolean
 }
 
 const Demo: React.FunctionComponent<Props> = (props) => {
-    const [codeVisible, setCodeVisible] = useState(true);
+    const initVisible = !!props.codeExpand;
+    const [codeVisible, setCodeVisible] = useState(initVisible);
     const codeVisibleToggle = () => {
         setCodeVisible(!codeVisible);
     };
     const codeVisibleClass = codeVisible ? 'expand' : '';
     return (
         <div className='doc-demo'>
-            <div className='component'>
+            <div className='demoComponent'>
                 {props.children}
             </div>
             <div className='demoCode'>

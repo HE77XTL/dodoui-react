@@ -4,11 +4,11 @@ import {
     HashRouter as Router,
     Route, NavLink
 } from "react-router-dom";
-import "./example/home.less";
-import DialogExample from "./example/dialogExample";
-import LayoutExample from "./example/layoutExample";
-import IconDemo from "./example/iconDemo";
-const logo = require("./example/avatar.jpg").default;
+import "./common/home.less";
+import DialogDemo from "./dialog/dialogDemo";
+import LayoutDemo from "./layout/layoutDemo";
+import IconDemo from "./icon/iconDemo";
+const logo = require("./common/avatar.jpg").default;
 
 
 ReactDOM.render(
@@ -42,8 +42,8 @@ ReactDOM.render(
             </aside>
             <main className='dodo-main'>
                 <Route path="/icon" component={IconDemo}/>
-                <Route path="/dialog" component={DialogExample}/>
-                <Route path="/layout" component={LayoutExample}/>
+                <Route path="/dialog" component={DialogDemo}/>
+                <Route path="/layout" component={LayoutDemo}/>
             </main>
             <footer className='dodo-footer'>
                 dodo
