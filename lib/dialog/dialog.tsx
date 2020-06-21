@@ -4,9 +4,6 @@ import {Icon} from "../index";
 import "./dialog.less";
 import {scopedClassMaker} from "../helpers/classes";
 
-
-// 一身清贫怎敢入繁华,二袖清风怎敢误佳人，罢了罢了
-
 interface Props {
     visible: Boolean,
     onClose: React.MouseEventHandler,

@@ -73,6 +73,7 @@ a {
         border: solid 1px @border-color;
         border-radius: 4px;
         padding: 8px;
+        transition: all 320ms;
     }
 
     .doc-demo:hover {
@@ -105,8 +106,13 @@ a {
         min-height: 32px;
 
         > pre {
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            opacity: 0.5;
             margin: 0;
+            //transition: visibility 320ms, max-height 720ms linear;
+            transition: all 480ms linear;
         }
 
         .codeVisible {
@@ -122,7 +128,9 @@ a {
 
     .codePanel.expand {
         > pre {
-            display: block;
+            max-height: 1000px;
+            visibility: visible;
+            opacity: 1;
         }
     }
     .doc-attributes {
@@ -152,6 +160,7 @@ a {
         .menuItem {
             padding: 8px 8px 8px 8px;
             display: block;
+            transition: all 320ms;
 
             &.active {
                 background-color: @main-color;
