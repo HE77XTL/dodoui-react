@@ -1,23 +1,22 @@
 import React from 'react';
-import {scopedClassMaker} from '../helpers/classes'
+import classes, {scopedClassMaker} from '../helpers/classes'
+import './button.less'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    size: string,
+    size?: string,
+    btnType?: string,
 }
 
 const sc = scopedClassMaker("dodo-button");
 const DoButton: React.FunctionComponent<Props> = (props) => {
-    const {className, size, ...rest} = props;
-    const classFmt = {
+    const {className, size, btnType, ...rest} = props;
+    const classFmt = classes(sc({
         "": true,
-        [size]: true,
         disabled: !!props.disabled
-    };
+    }), className, size, btnType);
 
     return (
-        <div>
-            <button className={sc(classFmt, className)} {...rest}>btn</button>
-        </div>
+        <button className={classFmt} {...rest}>btn</button>
     )
 };
 DoButton.defaultProps = {
