@@ -10,7 +10,7 @@ interface classToggle {
 
 function scopedClassMaker(prefix: string) {
     return function (name?: string | classToggle, extraClass?: string) {
-        // 改造，name 可以是对象，以className 为key, 是否显示该class 的布尔值 为value;
+        // name 可以是对象，以className 为key, 是否显示该class 的布尔值 为value;
         return Object.entries(name instanceof Object ? name : {[name ? name : ""]: true})
             .filter(kv => kv[1])
             .map(kv => [prefix, kv[0]].filter(Boolean).join("-"))

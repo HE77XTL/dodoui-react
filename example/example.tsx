@@ -5,9 +5,11 @@ import {
     Route, NavLink
 } from "react-router-dom";
 import "./common/home.less";
+import IconDemo from "./icon/iconDemo";
 import DialogDemo from "./dialog/dialogDemo";
 import LayoutDemo from "./layout/layoutDemo";
-import IconDemo from "./icon/iconDemo";
+import ButtonDemo from "./button/buttonDemo";
+
 const logo = require("./common/avatar.jpg").default;
 
 
@@ -38,12 +40,16 @@ ReactDOM.render(
                     <dd>
                         <NavLink to="/layout" className='menuItem' activeClassName='active'>layout</NavLink>
                     </dd>
+                    <dd>
+                        <NavLink to="/button" className='menuItem' activeClassName='active'>button</NavLink>
+                    </dd>
                 </dl>
             </aside>
             <main className='dodo-main'>
                 <Route path="/icon" component={IconDemo}/>
                 <Route path="/dialog" component={DialogDemo}/>
                 <Route path="/layout" component={LayoutDemo}/>
+                <Route path="/button" component={ButtonDemo}/>
             </main>
             <footer className='dodo-footer'>
                 dodo

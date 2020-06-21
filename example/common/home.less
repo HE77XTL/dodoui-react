@@ -109,10 +109,9 @@ a {
             max-height: 0;
             overflow: hidden;
             visibility: hidden;
-            opacity: 0.5;
             margin: 0;
             //transition: visibility 320ms, max-height 720ms linear;
-            transition: all 480ms linear;
+            transition: all 480ms ease-in-out;
         }
 
         .codeVisible {
@@ -130,7 +129,6 @@ a {
         > pre {
             max-height: 1000px;
             visibility: visible;
-            opacity: 1;
         }
     }
     .doc-attributes {
