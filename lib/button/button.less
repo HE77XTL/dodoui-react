@@ -10,9 +10,19 @@
   text-align: center;
   padding: @padding-xs @padding-sm;
   font-size: @font-size-md;
+  &:hover {
+    color: @blue;
+    background: #ecf5ff;
+    border-color: #c6e2ff;
+  }
 }
 
 .dodo-button.primary {
   color: white;
   background-color: @blue;
 }
+.dodo-button-disabled {
+  opacity: @disabled-opacity;
+  cursor: not-allowed;
+}
+

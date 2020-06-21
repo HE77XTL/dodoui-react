@@ -5,6 +5,7 @@ import './button.less'
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     size?: string,
     btnType?: string,
+    children: string
 }
 
 const sc = scopedClassMaker("dodo-button");
@@ -16,7 +17,7 @@ const DoButton: React.FunctionComponent<Props> = (props) => {
     }), className, size, btnType);
 
     return (
-        <button className={classFmt} {...rest}>btn</button>
+        <button className={classFmt} {...rest} disabled={props.disabled}>{props.children}</button>
     )
 };
 DoButton.defaultProps = {

@@ -5,8 +5,9 @@ import './buttonExample.less'
 const ButtonExample = () => {
     return (
         <div className='buttonWrap'>
-            <DoButton/>
-            <DoButton size='small' btnType='primary'/>
+            <DoButton>btn</DoButton>
+            <DoButton size='small' btnType='primary'>primary</DoButton>
+            <DoButton size='small' btnType='primary' disabled={true}>disabled</DoButton>
         </div>
     )
 };
