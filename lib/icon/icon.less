@@ -1,6 +1,26 @@
-.dodo-icon {
-  width: 1.4em;
-  height: 1.4em;
-  display: inline-block;
-  fill: currentColor;
+@keyframes dodo-keyframes-spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
+
+.spin {
+    animation: dodo-keyframes-spin 1s linear infinite;
+}
+
+.dodo-icon {
+    width: 1.4em;
+    height: 1.4em;
+    display: inline-block;
+    fill: currentColor;
+    vertical-align: middle;
+
+    &-loading {
+        color: red;
+        .spin();
+    }
+}
+
