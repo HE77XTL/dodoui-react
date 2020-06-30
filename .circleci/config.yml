@@ -61,9 +61,17 @@ workflows:
       - build:
           requires:
             - test
+          filters:
+            branches:
+              only:
+                - master
       - test:
           requires:
             - prepare
+          filters:
+            branches:
+              only:
+                - master
       - publish:
           requires:
             - build
