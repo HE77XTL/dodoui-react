@@ -1,18 +1,3 @@
-// import * as React from "react";
-// import InputExample from "./inputExample";
-//
-// const InputDemo = () => {
-//     return (
-//         <div>
-//             <InputExample/>
-//         </div>
-//     );
-// };
-// export default InputDemo;
-//
-//
-//
-
 import * as React from "react";
 import Demo from "../common/demo";
 import InputExample from "./inputExample";
