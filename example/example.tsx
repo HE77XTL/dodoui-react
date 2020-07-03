@@ -10,6 +10,7 @@ import DialogDemo from "./dialog/dialogDemo";
 import LayoutDemo from "./layout/layoutDemo";
 import ButtonDemo from "./button/buttonDemo";
 import InputDemo from "./input/inputDemo";
+import FormDemo from "./form/formDemo";
 
 const logo = require("./common/avatar.jpg").default;
 
@@ -47,6 +48,9 @@ ReactDOM.render(
                     <dd>
                         <NavLink to="/input" className='menuItem' activeClassName='active'>input</NavLink>
                     </dd>
+                    <dd>
+                        <NavLink to="/form" className='menuItem' activeClassName='active'>form</NavLink>
+                    </dd>
                 </dl>
             </aside>
             <main className='dodo-main'>
@@ -55,6 +59,7 @@ ReactDOM.render(
                 <Route path="/layout" component={LayoutDemo}/>
                 <Route path="/button" component={ButtonDemo}/>
                 <Route path="/input" component={InputDemo}/>
+                <Route path="/form" component={FormDemo}/>
             </main>
             <footer className='dodo-footer'>
                 dodo
