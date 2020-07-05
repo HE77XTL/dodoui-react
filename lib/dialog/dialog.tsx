@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {Icon} from "../index";
 import "./dialog.less";
 import {scopedClassMaker} from "../helpers/classes";
+import DoButton from "../button/button";
 
 interface Props {
     visible: Boolean,
@@ -72,15 +73,15 @@ const confirm = (content: String, no?: () => void, yes?: () => void) => {
         no && no();
     };
     const buttons = [
-        <button onClick={cancel}>取消</button>,
-        <button onClick={confirm}>确定</button>
+        <DoButton size='small' onClick={cancel}>取消</DoButton>,
+        <DoButton size='small' btnType='primary' onClick={confirm}>确定</DoButton>
     ];
     const close = model(content, buttons);
 };
 
 const alert = (content: string) => {
     const buttons = [
-        <button onClick={() => {close();}}>确定</button>
+        <DoButton size='small' btnType='primary' onClick={() => {close();}}>确定</DoButton>
     ];
     const close = model(content, buttons);
 };

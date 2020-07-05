@@ -3,8 +3,10 @@ import Demo from "../common/demo";
 import IconExample from "./iconExample";
 import {scopedClassMaker} from "../../lib/helpers/classes";
 
+
 const code = require("!!raw-loader!./iconExample.tsx");
 const sc = scopedClassMaker("doc");
+
 const IconDemo: React.FunctionComponent = () => {
     return (
         <div className={sc("example")}>
@@ -18,9 +20,6 @@ const IconDemo: React.FunctionComponent = () => {
                     <Demo code={code.default}>
                         <IconExample/>
                     </Demo>
-                </div>
-                <div className={sc('attributes')}>
-                    Attributes
                 </div>
             </main>
         </div>

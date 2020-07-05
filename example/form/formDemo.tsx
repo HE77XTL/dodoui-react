@@ -19,7 +19,7 @@ const FormDemo: React.FunctionComponent = () => {
                         <FormExample/>
                     </Demo>
                 </div>
-                <div className={sc('attributes')}>
+                <div className={sc('demoAttributes.tsx')}>
                     Attributes
                 </div>
             </main>

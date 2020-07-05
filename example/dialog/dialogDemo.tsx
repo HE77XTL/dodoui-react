@@ -5,6 +5,9 @@ import DialogExampleConfirm from "./dialogExampleConfirm";
 import DialogExampleModel from "./dialogExampleModel";
 import DialogExampleApi from "./dialogExampleApi";
 import {scopedClassMaker} from "../../lib/helpers/classes";
+import DemoAttributes from "../common/demoAttributes";
+import './dialogDemo.less'
+
 
 const codeAlert = require("!!raw-loader!./dialogExampleAlert.tsx");
 const codeConfirm = require("!!raw-loader!./dialogExampleConfirm.tsx");
@@ -12,6 +15,15 @@ const codeModel = require("!!raw-loader!./dialogExampleModel.tsx");
 const codeApi = require("!!raw-loader!./dialogExampleApi.tsx");
 
 const sc = scopedClassMaker("doc");
+const attributes = [
+    {
+        param:"visible",
+        explanation:"是否显示 Dialog",
+        type:"boolean",
+        optional:"—",
+        default:"false",
+    }
+];
 
 const IconDemo: React.FunctionComponent = () => {
     return (
@@ -44,9 +56,7 @@ const IconDemo: React.FunctionComponent = () => {
                         </Demo>
                     </div>
                 </div>
-                <div className={sc("attributes")}>
-                    Attributes
-                </div>
+                <DemoAttributes attributes={attributes}/>
             </main>
         </div>
     );

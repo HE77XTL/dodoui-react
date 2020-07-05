@@ -42,9 +42,9 @@ const IconDemo: React.FunctionComponent = () => {
                         </Demo>
                     </div>
                 </div>
-                <div className={sc("attributes")}>
-                    Attributes
-                </div>
+                {/*<div className={sc("demoAttributes.tsx")}>*/}
+                {/*    Attributes*/}
+                {/*</div>*/}
             </main>
         </div>
     );

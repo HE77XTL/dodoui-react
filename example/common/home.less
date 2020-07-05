@@ -6,6 +6,7 @@
 body {
     margin: 0;
     color: @text-color;
+    padding: 0 8px;
 }
 
 a {
@@ -15,12 +16,17 @@ a {
 
 .dodo-site {
     display: grid;
-    width: 100vw;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
     min-height: 100vh;
     box-sizing: border-box;
     grid-template-rows: 60px auto 60px;
     grid-template-columns: 200px auto;
     grid-template-areas: 'header header' 'aside main' 'aside footer';
+    border-left: solid 1px #ebebeb;
+    border-right: solid 1px #ebebeb;
+
 
     .dodo-header {
         grid-area: header;
@@ -177,12 +183,6 @@ a {
 ;
 }
 
-//
-////footer--------------------------------------------
-.dodo-footer {
-    padding: 12px;
-}
-
 .doc-example {
     .doc-header {
         margin-bottom: 20px;
@@ -207,4 +207,32 @@ a {
         }
     }
 
+    .doc-attributes-wrap {
+        .doc-attributes-header {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            thead {
+                color: #ccc;
+            }
+            td {
+                border-bottom: 1px solid #ebebeb;
+                padding: 6px 4px;
+            }
+            tbody {
+                td {
+                    padding: 10px 4px;
+                }
+            }
+        }
+
+    }
+}
+
+//
+////footer--------------------------------------------
+.dodo-footer {
+    padding: 12px;
 }

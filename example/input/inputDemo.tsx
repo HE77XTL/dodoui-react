@@ -19,7 +19,7 @@ const InputDemo: React.FunctionComponent = () => {
                         <InputExample/>
                     </Demo>
                 </div>
-                <div className={sc('attributes')}>
+                <div className={sc('demoAttributes.tsx')}>
                     Attributes
                 </div>
             </main>

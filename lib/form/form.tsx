@@ -25,7 +25,7 @@ export interface FormErrors {
     [K: string]: string;
 }
 
-interface IProps {
+interface Props {
     layout?: 'vertical' | 'horizontal' | 'inline';
     value: FormValue;
     fields: FormField[];
@@ -34,7 +34,7 @@ interface IProps {
     onChange: (value: FormValue) => void;
 }
 
-const Form: React.FunctionComponent<IProps> = (props) => {
+const Form: React.FunctionComponent<Props> = (props) => {
     const onInputChange = (name: string, e: any) => {
         props.onChange({...props.value, [name]: e.target.value});
     };
@@ -61,7 +61,7 @@ const Form: React.FunctionComponent<IProps> = (props) => {
             )}
             <tr>
                 <td className={sc('td')}/>
-                <td className={sc('td')} colSpan={2}>
+                <td className={sc('td')}>
                     <div className={sc('buttons')}>
                         {props.buttons}
                     </div>

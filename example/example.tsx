@@ -34,22 +34,22 @@ ReactDOM.render(
                         Basic
                     </dt>
                     <dd>
-                        <NavLink to="/icon" className='menuItem' activeClassName='active'>icon</NavLink>
+                        <NavLink to="/icon" className='menuItem' activeClassName='active'>icon 图标</NavLink>
                     </dd>
                     <dd>
-                        <NavLink to="/dialog" className='menuItem' activeClassName='active'>dialog</NavLink>
+                        <NavLink to="/dialog" className='menuItem' activeClassName='active'>dialog 对话框</NavLink>
                     </dd>
                     <dd>
-                        <NavLink to="/layout" className='menuItem' activeClassName='active'>layout</NavLink>
+                        <NavLink to="/layout" className='menuItem' activeClassName='active'>layout 布局</NavLink>
                     </dd>
                     <dd>
-                        <NavLink to="/button" className='menuItem' activeClassName='active'>button</NavLink>
+                        <NavLink to="/button" className='menuItem' activeClassName='active'>button 按钮</NavLink>
                     </dd>
                     <dd>
-                        <NavLink to="/input" className='menuItem' activeClassName='active'>input</NavLink>
+                        <NavLink to="/input" className='menuItem' activeClassName='active'>input 输入框</NavLink>
                     </dd>
                     <dd>
-                        <NavLink to="/form" className='menuItem' activeClassName='active'>form</NavLink>
+                        <NavLink to="/form" className='menuItem' activeClassName='active'>form 表单</NavLink>
                     </dd>
                 </dl>
             </aside>
@@ -61,9 +61,9 @@ ReactDOM.render(
                 <Route path="/input" component={InputDemo}/>
                 <Route path="/form" component={FormDemo}/>
             </main>
-            <footer className='dodo-footer'>
-                dodo
-            </footer>
+            {/*<footer className='dodo-footer'>*/}
+            {/*    DoDo UI*/}
+            {/*</footer>*/}
         </div>
     </Router>,
     document.getElementById("root")

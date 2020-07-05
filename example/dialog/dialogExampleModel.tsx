@@ -1,12 +1,13 @@
 import * as React from "react";
 import Dialog from "../../lib/dialog/dialog";
 import {useState} from "react";
+import DoButton from "../../lib/button/button";
 
 const DialogExampleModel = () => {
     const [visibleModel, setVisibleModel] = useState(false);
     return (
         <div>
-            <button onClick={() => {setVisibleModel(!visibleModel);}}>model</button>
+            <DoButton size='small' btnType='primary' onClick={() => {setVisibleModel(!visibleModel);}}>model</DoButton>
             <Dialog
                 visible={visibleModel}
                 onClose={() => {setVisibleModel(false);}}>
