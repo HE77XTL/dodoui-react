@@ -5,12 +5,12 @@ import DoInput from "../input/input";
 interface Props {
     value: { [k: string]: any },
     fields: Array<{ name: string, label: string, input: { type: string } }>,
-    buttons?: ReactFragment,
+    buttons: ReactFragment,
     onSubmit?: ReactEventHandler
 }
 
 const DoForm: React.FunctionComponent<Props> = (props) => {
-    const {fields, ...rest} = props;
+    const {fields, buttons, ...rest} = props;
     return (
         <form {...rest}>
             {fields.map(item => {
@@ -21,6 +21,7 @@ const DoForm: React.FunctionComponent<Props> = (props) => {
                     </div>
                 );
             })}
+            {buttons}
         </form>
     );
 };
