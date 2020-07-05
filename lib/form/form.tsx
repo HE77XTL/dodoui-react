@@ -1,64 +1,105 @@
-import * as React from "react";
-import {ReactEventHandler, ReactFragment} from "react";
+import * as React from 'react';
+import {FormEvent, ReactNode} from 'react';
+import './form.less';
 import DoInput from "../input/input";
-import './form.less'
-
 import {scopedClassMaker} from "../helpers/classes";
-
 
 const sc = scopedClassMaker("dodo-form");
 
-export interface FormValue {
-    [k: string]: any
+
+interface FormFieldDefaultRender {
+    type: 'text' | 'textarea' | 'number' | 'password';
 }
 
-interface Props extends React.HTMLAttributes<HTMLElement> {
-    value: FormValue,
-    fields: Array<{ name: string, label: string, input: { type: string, value: string } }>,
-    buttons: ReactFragment,
-    onSubmit?: ReactEventHandler,
+export interface FormField {
+    name: string;
+    label: string;
+    input: (() => ReactNode) | FormFieldDefaultRender;
+}
+
+export interface FormValue {
+    [K: string]: any;
+}
+
+export interface FormErrors {
+    [K: string]: string;
+}
+
+interface IProps {
+    layout?: 'vertical' | 'horizontal' | 'inline';
+    value: FormValue;
+    fields: FormField[];
+    buttons: ReactNode;
+    onSubmit: (value: FormValue) => void;
     onChange: (value: FormValue) => void;
 }
 
-const DoForm: React.FunctionComponent<Props> = (props) => {
-    const formData = Object.assign({},props.value);
-    const {fields, buttons, className, ...rest} = props;
-    const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-        e.preventDefault();
-        e.persist();
-        props.onSubmit && props.onSubmit(e)
+const Form: React.FunctionComponent<IProps> = (props) => {
+    const onInputChange = (name: string, e: any) => {
+        props.onChange({...props.value, [name]: e.target.value});
     };
-    const onInputChange = (name: string, e: React.ChangeEvent<HTMLInputElement>) => {
-        e.persist();
-        console.log('name')
-        console.log(name)
-        const newFormData = {formData, [name]: e.target.value};
-        props.onChange(newFormData)
+    const renderInput = (field: FormField) =>
+        <div className={sc('input-wrapper')} key={field.name}>
+            {field.input instanceof Function ?
+                field.input() :
+                <DoInput value={props.value[field.name]}
+                       onChange={onInputChange.bind(null, field.name)}/>}
+        </div>;
+
+    const horizontalLayout = (
+        <table className={sc('table')}>
+            <tbody>
+            {props.fields.map(f =>
+                <tr key={f.name} className={sc('tr')}>
+                    <td className={sc('td')}>
+                        <div className={sc('label')}>{f.label}</div>
+                    </td>
+                    <td className={sc('td')}>
+                        {renderInput(f)}
+                    </td>
+                </tr>
+            )}
+            <tr>
+                <td className={sc('td')}/>
+                <td className={sc('td')} colSpan={2}>
+                    <div className={sc('buttons')}>
+                        {props.buttons}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    );
+    const verticalLayout = <div>
+        {props.fields.map(f =>
+            <div key={f.name} className={sc('row')}>
+                <div className={sc('label')}>{f.label}</div>
+                {renderInput(f)}
+            </div>
+        )}
+        <div className={sc('buttons')}>
+            {props.buttons}
+        </div>
+    </div>;
+    const onSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        props.onSubmit(props.value);
     };
     return (
-        <form className={sc("", className)} {...rest} onSubmit={onSubmit}>
-            <table>
-                <tbody>
-                {fields.map(item => {
-                    return (
-                        <tr key={item.name}>
-                            <td>{item.label}</td>
-                            <td>
-                                <DoInput
-                                    value={formData[item.name]}
-                                    type={item.input.type}
-                                    onChange={onInputChange.bind(null, item.name)}/>
-                            </td>
-                        </tr>
-                    )
-                })}
-                <tr>
-                    <td/>
-                    <td>{buttons}</td>
-                </tr>
-                </tbody>
-            </table>
-        </form>
+        <div className={sc('wrapper')}>
+            <form className={sc('', props.layout)} onSubmit={onSubmit}>
+                {props.layout === 'horizontal' ?
+                    horizontalLayout :
+                    verticalLayout
+                }
+            </form>
+        </div>
     );
 };
-export default DoForm;
+
+Form.defaultProps = {
+    layout: 'horizontal'
+};
+Form.propTypes = {};
+
+export default Form;
