@@ -36,6 +36,7 @@ const DoButton: React.FunctionComponent<Props> = (props) => {
     );
 };
 DoButton.defaultProps = {
-    size: "normal"
+    size: "normal",
+    type: 'button'
 };
 export default DoButton;

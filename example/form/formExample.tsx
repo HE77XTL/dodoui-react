@@ -1,26 +1,28 @@
 import * as React from "react";
-import {Fragment} from "react";
-import DoForm from "../../lib/form/form";
+import {Fragment, useState} from "react";
+import DoForm, {FormValue} from "../../lib/form/form";
 import DoButton from "../../lib/button/button";
 
 const FormExample = () => {
-    const formData = {
-        password: '',
-        username: '',
-    };
+    const [formData, setFormData] = useState<FormValue>({
+        username: 'heds',
+        password: '123',
+    });
     const fields = [
         {
             name: 'username',
             label: 'username',
             input: {
-                type: 'text'
+                type: 'text',
+                value: ""
             }
         },
         {
             name: 'password',
             label: 'password',
             input: {
-                type: 'text'
+                type: 'text',
+                value: ""
             }
         }
     ];
@@ -28,12 +30,20 @@ const FormExample = () => {
         <div>
             <DoForm
                 value={formData} fields={fields}
+                onSubmit={(e) => {
+                    console.log(e)
+                    console.log(11)
+                    console.log(formData)
+                }}
+                onChange={(newFormData: FormValue) => {
+                    setFormData(newFormData)
+                }}
                 buttons={
-                <Fragment>
-                    <DoButton>返回</DoButton>
-                    <DoButton>提交</DoButton>
-                </Fragment>
-            }/>
+                    <Fragment>
+                        <DoButton size='small'>返回</DoButton>
+                        <DoButton size='small' type="submit">提交</DoButton>
+                    </Fragment>
+                }/>
         </div>
     );
 };
