@@ -17,7 +17,7 @@ const IconDemo: React.FunctionComponent = () => {
             <main>
                 <div className={sc("use")}>
                     <div className={sc("tip")}>使用方法</div>
-                    <Demo code={code.default}>
+                    <Demo code={code.default} codeExpand={true}>
                         <IconExample/>
                     </Demo>
                 </div>

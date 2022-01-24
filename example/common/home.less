@@ -2,6 +2,7 @@
 @gray-color: #9facba;
 @text-color: #4c5161;
 @border-color: #ebebeb;
+@asideWith: 300px;
 
 body {
     margin: 0;
@@ -41,8 +42,8 @@ a {
 
 ////main--------------------------------------------
 .dodo-main {
-    padding: 12px;
-    margin-left: 240px;
+    padding: 12px 24px;
+    margin-left: @asideWith;
 
     .doc-demo {
         border: solid 1px @border-color;
@@ -114,9 +115,10 @@ a {
 
 .dodo-aside {
     position: fixed;
+    padding-left: 8px;
     top: 58px;
     left: 0;
-    width: 240px;
+    width: @asideWith;
     overflow: auto;
     overscroll-behavior: contain;
     box-shadow: 3px 0 7px 0 #e2e5f2, inset 0 -1px #f0f1f2;
