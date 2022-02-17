@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {NavLink} from "react-router-dom";
 
 const ExampleAside = () => {
-    const [scrollTop, setScrollTop] = useState(0);
+    const [scrollTop, setScrollTop] = useState(58);
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -12,7 +12,7 @@ const ExampleAside = () => {
 
     function handleScroll() {
         const scrollTop = document.documentElement.scrollTop;
-        const asideTopOffset = scrollTop >= 58 ? 0 : 58 - scrollTop;
+        const asideTopOffset = scrollTop > 58 ? 0 : 58 - scrollTop;
         setScrollTop(asideTopOffset);
     }
 

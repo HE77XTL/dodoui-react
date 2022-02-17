@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Fragment, useState} from "react";
-import DoForm, {FormField, FormValue} from "../../lib/form/form";
-import DoButton from "../../lib/button/button";
+import {Form, Button, FormValue, FormField} from "hedongsheng-ui-react";
 
 const FormExample = () => {
     const [formData, setFormData] = useState<FormValue>({
@@ -22,15 +21,15 @@ const FormExample = () => {
     };
     return (
         <div>
-            <DoForm
+            <Form
                 value={formData}
                 fields={fields}
                 onSubmit={onSubmit}
                 onChange={onChange}
                 buttons={
                     <Fragment>
-                        <DoButton size='small'>返回</DoButton>
-                        <DoButton size='small' type="submit">提交</DoButton>
+                        <Button size='small'>返回</Button>
+                        <Button size='small' type="submit">提交</Button>
                     </Fragment>
                 }/>
         </div>

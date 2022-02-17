@@ -12,9 +12,15 @@ interface Props {
     closeOnClickMask?: Boolean
 }
 
+interface DialogInterface extends React.FunctionComponent<Props> {
+    model: typeof model;
+    alert: typeof alert;
+    confirm: typeof confirm;
+}
+
 const sc = scopedClassMaker("dodo-dialog");
 
-const Dialog: React.FunctionComponent<Props> = (props) => {
+const Dialog: DialogInterface = (props) => {
     const onClickClose: React.MouseEventHandler = (e) => {
         props.onClose(e);
     };
@@ -85,5 +91,8 @@ const alert = (content: string) => {
     ];
     const close = model(content, buttons);
 };
+Dialog.model = model;
+Dialog.alert = alert;
+Dialog.confirm = confirm;
 export {model, alert, confirm};
 export default Dialog;

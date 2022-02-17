@@ -1,9 +1,8 @@
 import * as React from "react";
-import Layout from "../../lib/layout/layout";
-import Header from "../../lib/layout/header";
-import Content from "../../lib/layout/content";
-import Footer from "../../lib/layout/footer";
+import {Layout} from "hedongsheng-ui-react";
 import "./layoutExample.less";
+
+const {Header, Content, Footer} = Layout;
 
 const LayoutExample = () => {
     return (

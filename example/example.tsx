@@ -2,7 +2,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {
     HashRouter as Router,
-    Route
+    Route,
+    Redirect
 } from "react-router-dom";
 import "./common/home.less";
 import IconDemo from "./icon/iconDemo";
@@ -31,6 +32,9 @@ ReactDOM.render(
         <div className='dodo-site'>
             <ExampleAside/>
             <main className='dodo-main'>
+                <Route path="/" exact={true} >
+                    <Redirect to="/icon" />
+                </Route>
                 <Route path="/icon" component={IconDemo}/>
                 <Route path="/dialog" component={DialogDemo}/>
                 <Route path="/layout" component={LayoutDemo}/>

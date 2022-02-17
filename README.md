@@ -5,11 +5,11 @@
 
 ## Install
 ```
-npm install zoro-dodoui
+npm install hedongsheng-ui-react
 ```
 
 ```
-yarn add zoro-dodoui
+yarn add hedongsheng-ui-react
 ```
 
 

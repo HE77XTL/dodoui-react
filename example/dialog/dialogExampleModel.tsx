@@ -1,5 +1,5 @@
 import * as React from "react";
-import Dialog from "../../lib/dialog/dialog";
+import { Dialog} from "hedongsheng-ui-react";
 import {useState} from "react";
 import DoButton from "../../lib/button/button";
 

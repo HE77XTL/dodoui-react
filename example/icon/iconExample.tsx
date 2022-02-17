@@ -1,5 +1,5 @@
 import * as React from "react";
-import Icon from "../../lib/icon/icon";
+import {Icon} from "hedongsheng-ui-react";
 
 function IconExample() {
     return (

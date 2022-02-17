@@ -1,7 +1,7 @@
 import * as React from "react";
-import Dialog from "../../lib/dialog/dialog";
+import {Dialog, Button} from "hedongsheng-ui-react";
 import {useState} from "react";
-import DoButton from "../../lib/button/button";
+
 import {scopedClassMaker} from "../../lib/helpers/classes";
 
 const sc = scopedClassMaker("doc");
@@ -11,7 +11,7 @@ const DialogExampleAlert = () => {
 
     return (
         <div className={sc('dialog')}>
-            <DoButton size='small' btnType='primary' onClick={() => {setVisible(!visible);}}>alert</DoButton>
+            <Button size='small' btnType='primary' onClick={() => {setVisible(!visible);}}>alert</Button>
 
             <Dialog
                 visible={visible}
@@ -20,7 +20,7 @@ const DialogExampleAlert = () => {
                 }}
                 buttons={
                     [
-                        <DoButton size='small' btnType='primary' onClick={() => {setVisible(false);}}>确定</DoButton>
+                        <Button size='small' btnType='primary' onClick={() => {setVisible(false);}}>确定</Button>
                     ]
                 }>
                 <div>hi</div>

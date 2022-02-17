@@ -1,4 +1,4 @@
-import DoButton from "../../lib/button/button";
+import { Button} from "hedongsheng-ui-react";
 import * as React from "react";
 import "./buttonExample.less";
 
@@ -7,16 +7,16 @@ const ButtonExample = () => {
     return (
         <div className='buttonWrap'>
             <div>
-                <DoButton size='mini' icon='wechat'>mini</DoButton>
-                <DoButton size='small' icon='wechat'>small</DoButton>
-                <DoButton icon='wechat'>normal</DoButton>
-                <DoButton size='large' icon='wechat'>large</DoButton>
+                <Button size='mini' icon='wechat'>mini</Button>
+                <Button size='small' icon='wechat'>small</Button>
+                <Button icon='wechat'>normal</Button>
+                <Button size='large' icon='wechat'>large</Button>
             </div>
             <div>
-                <DoButton btnType='primary'>primary</DoButton>
-                <DoButton icon='wechat'>icon</DoButton>
-                <DoButton loading={loading} disabled={loading}>loading</DoButton>
-                <DoButton btnType='primary' disabled={true}>disabled</DoButton>
+                <Button btnType='primary'>primary</Button>
+                <Button icon='wechat'>icon</Button>
+                <Button loading={loading} disabled={loading}>loading</Button>
+                <Button btnType='primary' disabled={true}>disabled</Button>
             </div>
         </div>
     );
