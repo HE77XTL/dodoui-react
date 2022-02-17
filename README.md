@@ -1,7 +1,7 @@
 # dodoui-react
 
 [![CircleCI](https://circleci.com/gh/HE77XTL/dodoui-react.svg?style=svg)](https://circleci.com/gh/HE77XTL/dodoui-react)
-[![npm version](https://badge.fury.io/js/zoro77uitest001.svg)](https://badge.fury.io/js/zoro77uitest001)
+[![npm version](https://badge.fury.io/js/hedongsheng-ui-react.svg)](https://badge.fury.io/js/hedongsheng-ui-react)
 
 ## Install
 ```
