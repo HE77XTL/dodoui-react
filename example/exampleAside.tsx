@@ -32,13 +32,13 @@ const ExampleAside = () => {
                 <NavLink to="/icon" className='menuItem' activeClassName='active'>icon 图标</NavLink>
             </dd>
             <dd>
+                <NavLink to="/button" className='menuItem' activeClassName='active'>button 按钮</NavLink>
+            </dd>
+            <dd>
                 <NavLink to="/dialog" className='menuItem' activeClassName='active'>dialog 对话框</NavLink>
             </dd>
             <dd>
                 <NavLink to="/layout" className='menuItem' activeClassName='active'>layout 布局</NavLink>
-            </dd>
-            <dd>
-                <NavLink to="/button" className='menuItem' activeClassName='active'>button 按钮</NavLink>
             </dd>
             <dd>
                 <NavLink to="/input" className='menuItem' activeClassName='active'>input 输入框</NavLink>
