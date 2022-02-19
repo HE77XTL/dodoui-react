@@ -7,6 +7,7 @@
 body {
     margin: 0;
     color: @text-color;
+    min-width: 860px;
 }
 
 a {
@@ -87,7 +88,6 @@ a {
             visibility: hidden;
             margin: 0;
             transition: visibility 160ms, max-height 160ms;
-            //transition: all 480ms ease-in-out;
         }
 
         .codeVisible {
@@ -156,6 +156,7 @@ a {
 }
 
 .doc-example {
+    padding-bottom: 30px;
     .doc-header {
         margin-bottom: 20px;
 
@@ -200,6 +201,15 @@ a {
             }
         }
 
+    }
+
+    .doc-componentNote {
+        h3 {
+            margin-top: 50px;
+        }
+        p {
+            color: @gray-color;
+        }
     }
 }
 

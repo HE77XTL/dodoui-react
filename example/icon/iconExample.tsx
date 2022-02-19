@@ -4,9 +4,10 @@ import {Icon} from "hedongsheng-ui-react";
 function IconExample() {
     return (
         <div>
-            <Icon name='qq' className='test1' />
-            <Icon name='wechat' className='test2 test3'/>
-            <Icon name='alipay' className='' onClick={() => {console.log(1)}} />
+            <Icon name='qq'/>
+            <Icon name='wechat'/>
+            <Icon name='alipay'/>
+            <Icon name='dingtalk'/>
         </div>
     );
 }
