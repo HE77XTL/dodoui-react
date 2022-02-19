@@ -1,17 +1,46 @@
 @import "../index.less";
-.do-input {
-    border: 1px solid #ddd;
-    line-height: 24px;
-    border-radius: 4px;
-    padding: 2px 8px;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    &:hover {
-        border-color: @blue;
+.dodo-input-wrap {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    .dodo-input {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid @gray-4;
+        height: @input-height;
+        line-height: @input-height;
+        border-radius: 4px;
+        padding: 1px 8px;
+        transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+        &:hover {
+            border-color: @blue;
+        }
+        &:focus {
+            outline: none;
+            border-color: @blue;
+            box-shadow: 0 0 2px 0 lighten(@blue,10%);
+        }
+        &:disabled {
+            cursor: not-allowed;
+            &:hover {
+                border-color: @gray-4;
+            }
+        }
+        &.clearable {
+            padding-right: 30px;
+        }
+
     }
-    &:focus {
-        outline: none;
-        border-color: @blue;
-        box-shadow: 0 0 2px 0 lighten(@blue,10%);
+
+    .dodo-input-clearable-icon {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        right: 8px;
+        top: 6px;
+        cursor: pointer;
     }
 
 }
+

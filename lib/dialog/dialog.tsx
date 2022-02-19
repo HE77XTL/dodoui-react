@@ -6,10 +6,11 @@ import {scopedClassMaker} from "../helpers/classes";
 import DoButton from "../button/button";
 
 interface Props {
-    visible: Boolean,
+    visible: boolean,
     onClose: React.MouseEventHandler,
     buttons?: Array<ReactElement>,
-    closeOnClickMask?: Boolean
+    content?: ReactElement,
+    closeOnClickMask?: boolean
 }
 
 interface DialogInterface extends React.FunctionComponent<Props> {
@@ -27,6 +28,7 @@ const Dialog: DialogInterface = (props) => {
     const onClickMask: React.MouseEventHandler = (e) => {
         props.closeOnClickMask && props.onClose(e);
     };
+    const childrenContent = props.content ? props.content: props.children;
     const result = props.visible &&
         <Fragment>
             <div className={sc("mask")} onClick={onClickMask}/>
@@ -36,7 +38,7 @@ const Dialog: DialogInterface = (props) => {
                 </div>
                 <header className={sc("header")}>123</header>
                 <main className={sc("main")}>
-                    {props.children}
+                    {childrenContent}
                 </main>
                 <footer className={sc("footer")}>
                     {
@@ -69,7 +71,7 @@ const model = (content: React.ReactNode, buttons?: Array<ReactElement>) => {
     return close;
 };
 
-const confirm = (content: String, no?: () => void, yes?: () => void) => {
+const confirm = (content: React.ReactNode, no?: () => void, yes?: () => void) => {
     const confirm = () => {
         close();
         yes && yes();
@@ -85,7 +87,7 @@ const confirm = (content: String, no?: () => void, yes?: () => void) => {
     const close = model(content, buttons);
 };
 
-const alert = (content: string) => {
+const alert = (content: React.ReactNode) => {
     const buttons = [
         <DoButton size='small' btnType='primary' onClick={() => {close();}}>确定</DoButton>
     ];

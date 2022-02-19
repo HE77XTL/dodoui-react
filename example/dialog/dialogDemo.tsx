@@ -20,9 +20,41 @@ const attributes = [
         param:"visible",
         explanation:"是否显示 Dialog",
         type:"boolean",
-        optional:"—",
+        optional:"-",
         default:"false",
-    }
+    },
+    {
+        param:"content",
+        explanation:"内容",
+        type:"ReactNode",
+        optional:"-",
+        default:"-",
+    },
+    {
+        param:"onClose",
+        explanation:"关闭对话框回调事件",
+        type:"Function",
+        optional:"-",
+        default:"-",
+    },
+    {
+        param:"closeOnClickMask",
+        explanation:"点击蒙层是否关闭",
+        type:"Boolean",
+        optional:"true | false",
+        default:"true",
+    },
+    {
+        param:"buttons",
+        explanation:"自定义弹框底部按钮",
+        type:"ReactNode",
+        optional:"-",
+        default:"-",
+    },
+
+
+
+
 ];
 
 const IconDemo: React.FunctionComponent = () => {

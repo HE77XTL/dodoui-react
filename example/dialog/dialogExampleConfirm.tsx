@@ -11,6 +11,7 @@ const DialogExampleConfirm = () => {
             <Dialog
                 visible={visibleConfirm}
                 closeOnClickMask={false}
+                content={<h2>hello</h2>}
                 onClose={() => {setVisibleConfirm(false);}}
                 buttons={
                     [
@@ -18,7 +19,7 @@ const DialogExampleConfirm = () => {
                         <DoButton size='small' btnType='primary' onClick={() => {setVisibleConfirm(false);}}>确定</DoButton>
                     ]
                 }>
-                <h2>hello</h2>
+
             </Dialog>
         </div>
     );
