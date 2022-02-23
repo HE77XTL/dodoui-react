@@ -2,7 +2,7 @@ import * as React from 'react';
 import {FormEvent, ReactNode} from 'react';
 import './form.less';
 import DoInput from "../input/input";
-import {scopedClassMaker} from "../helpers/classes";
+import classes, {scopedClassMaker} from "../helpers/classes";
 
 const sc = scopedClassMaker("dodo-form");
 
@@ -26,7 +26,9 @@ export interface FormErrors {
 }
 
 interface Props {
-    layout?: 'vertical' | 'horizontal' | 'inline';
+    layout?: 'vertical' | 'horizontal';
+    labelPosition?: 'left' | 'right',
+    labelWidth?: string,
     value: FormValue;
     fields: FormField[];
     buttons: ReactNode;
@@ -43,8 +45,17 @@ const Form: React.FunctionComponent<Props> = (props) => {
             {field.input instanceof Function ?
                 field.input() :
                 <DoInput value={props.value[field.name]}
-                       onChange={onInputChange.bind(null, field.name)}/>}
+                         onChange={onInputChange.bind(null, field.name)}/>}
         </div>;
+
+    const labelStyle = function () {
+        const widthStyle = props.labelWidth ? {
+            width: props.labelWidth
+        } : {};
+        return {
+            ...widthStyle
+        }
+    };
 
     const horizontalLayout = (
         <table className={sc('table')}>
@@ -52,7 +63,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
             {props.fields.map(f =>
                 <tr key={f.name} className={sc('tr')}>
                     <td className={sc('td')}>
-                        <div className={sc('label')}>{f.label}</div>
+                        <div style={labelStyle()}
+                             className={classes(sc('label'), sc(props.labelPosition))}>{f.label}</div>
                     </td>
                     <td className={sc('td')}>
                         {renderInput(f)}
@@ -73,7 +85,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
     const verticalLayout = <div>
         {props.fields.map(f =>
             <div key={f.name} className={sc('row')}>
-                <div className={sc('label')}>{f.label}</div>
+                <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>{f.label}</div>
                 {renderInput(f)}
             </div>
         )}
@@ -98,7 +110,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
 };
 
 Form.defaultProps = {
-    layout: 'horizontal'
+    layout: 'horizontal',
+    labelPosition: 'right'
 };
 Form.propTypes = {};
 
