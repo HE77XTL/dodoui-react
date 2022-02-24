@@ -22,7 +22,16 @@ export interface FormValue {
 }
 
 export interface FormErrors {
-    [K: string]: string;
+    [K: string]: string[];
+}
+
+export interface FormRule {
+    key: string;
+    message: string;
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    pattern?: RegExp;
 }
 
 interface Props {
