@@ -4,13 +4,20 @@ import {isEmpty} from '../helpers/utils'
 type FormRules = Array<FormRule>
 
 const getValidResult = (rule: FormRule, value: any): boolean => {
+    if (rule.required) {
+        return !isEmpty(value)
+    }
+    if (rule.minLength) {
+        return !isEmpty(value) && value.length > rule.minLength
+    }
+    if (rule.maxLength) {
+        return !isEmpty(value) && value.length < rule.maxLength
+    }
     if (rule.pattern) {
         return rule.pattern.test(value)
     }
+    return true
 
-    return !(rule.required && isEmpty(value))
-        && !(rule.minLength && value.length < rule.minLength)
-        && !(rule.maxLength && value.length > rule.maxLength)
 };
 
 const Validator = (formValue: FormValue, rules: FormRules): FormErrors => {

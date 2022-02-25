@@ -48,9 +48,8 @@ const FormExample = () => {
             <Form
                 value={formData}
                 fields={fields}
-                labelWidth={"60px"}
-                labelPosition="left"
-                layout="vertical"
+                labelWidth={"80px"}
+                labelPosition="right"
                 onSubmit={onSubmit}
                 onChange={onChange}
                 buttons={
