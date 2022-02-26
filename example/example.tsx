@@ -13,6 +13,7 @@ import ButtonDemo from "./button/buttonDemo";
 import InputDemo from "./input/inputDemo";
 import FormDemo from "./form/formDemo";
 import ExampleAside from './exampleAside'
+import ScaleImageDemo from './scaleImage/scaleImageDemo'
 
 const logo = require("./common/avatar.jpg").default;
 
@@ -41,6 +42,7 @@ ReactDOM.render(
                 <Route path="/button" component={ButtonDemo}/>
                 <Route path="/input" component={InputDemo}/>
                 <Route path="/form" component={FormDemo}/>
+                <Route path="/scaleImage" component={ScaleImageDemo}/>
             </main>
             {/*<footer className='dodo-footer'>*/}
             {/*    DoDo UI*/}

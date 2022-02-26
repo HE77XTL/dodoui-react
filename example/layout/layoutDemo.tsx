@@ -11,7 +11,7 @@ const code_2 = require("!!raw-loader!./layoutExample_2.tsx");
 const code_3 = require("!!raw-loader!./layoutExample_3.tsx");
 const code_4 = require("!!raw-loader!./layoutExample_4.tsx");
 const sc = scopedClassMaker("doc");
-const IconDemo: React.FunctionComponent = () => {
+const LayoutDemo: React.FunctionComponent = () => {
     return (
         <div className={sc("example")}>
             <header className={sc("header")}>
@@ -50,4 +50,4 @@ const IconDemo: React.FunctionComponent = () => {
     );
 };
 
-export default IconDemo;
+export default LayoutDemo;

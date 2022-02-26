@@ -46,6 +46,12 @@ const ExampleAside = () => {
             <dd>
                 <NavLink to="/form" className='menuItem' activeClassName='active'>form 表单</NavLink>
             </dd>
+            <dt className='menuItem'>
+                常用组件
+            </dt>
+            <dd>
+                <NavLink to="/scaleImage" className='menuItem' activeClassName='active'>image等比变宽图片</NavLink>
+            </dd>
         </dl>
     </aside>)
 }
