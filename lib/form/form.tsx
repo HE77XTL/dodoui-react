@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FormEvent, ReactNode} from 'react';
+import {ReactNode, Fragment} from 'react';
 import './form.less';
 import DoInput from "../input/input";
 import classes, {scopedClassMaker} from "../helpers/classes";
@@ -22,7 +22,7 @@ export interface FormValue {
 }
 
 export interface FormErrors {
-    [K: string]: string[];
+    [K: string]: string[];// 目前只展示第一个错误， 为以后同时展示多个错误做预留
 }
 
 export interface FormRule {
@@ -36,13 +36,12 @@ export interface FormRule {
 
 interface Props {
     layout?: 'vertical' | 'horizontal';
-    labelPosition?: 'left' | 'right',
+    labelPosition?: 'left' | 'right' | 'center' | 'justify',
     labelWidth?: string,
     value: FormValue;
     fields: FormField[];
-    buttons: ReactNode;
-    onSubmit: (value: FormValue) => void;
     onChange: (value: FormValue) => void;
+    errors?: FormErrors
 }
 
 const Form: React.FunctionComponent<Props> = (props) => {
@@ -66,28 +65,43 @@ const Form: React.FunctionComponent<Props> = (props) => {
         }
     };
 
+    const getErrorText = function (key: string) {
+        if (props.errors && props.errors[key]) {
+            return props.errors[key][0]
+        } else {
+            return ""
+        }
+    };
+
+
     const horizontalLayout = (
         <table className={sc('table')}>
             <tbody>
             {props.fields.map(f =>
-                <tr key={f.name} className={sc('tr')}>
-                    <td className={sc('td')}>
-                        <div style={labelStyle()}
-                             className={classes(sc('label'), sc(props.labelPosition))}>{f.label}</div>
-                    </td>
-                    <td className={sc('td')}>
-                        {renderInput(f)}
-                    </td>
-                </tr>
+                <Fragment key={f.name}>
+                    <tr className={sc('tr')}>
+                        <td className={sc('td')}>
+                            {props.labelPosition === 'justify'
+                                ? <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>
+                                    <div className={sc('placeholderLabel')}>{f.label}</div>
+                                    <div className={sc('labelShow')} >{f.label}</div>
+                                </div>
+                                : <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>
+                                    {f.label}
+                                </div>}
+                        </td>
+                        <td className={sc('td')}>
+                            {renderInput(f)}
+                        </td>
+                    </tr>
+                    {getErrorText(f.name)
+                        ? <tr>
+                            <td/>
+                            <td>{getErrorText(f.name)}</td>
+                        </tr>
+                        : null}
+                </Fragment>
             )}
-            <tr>
-                <td className={sc('td')}/>
-                <td className={sc('td')}>
-                    <div className={sc('buttons')}>
-                        {props.buttons}
-                    </div>
-                </td>
-            </tr>
             </tbody>
         </table>
     );
@@ -98,17 +112,10 @@ const Form: React.FunctionComponent<Props> = (props) => {
                 {renderInput(f)}
             </div>
         )}
-        <div className={sc('buttons')}>
-            {props.buttons}
-        </div>
     </div>;
-    const onSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        props.onSubmit(props.value);
-    };
     return (
         <div className={sc('wrapper')}>
-            <form className={sc('', props.layout)} onSubmit={onSubmit}>
+            <form className={sc('', props.layout)}>
                 {props.layout === 'horizontal' ?
                     horizontalLayout :
                     verticalLayout

@@ -1,7 +1,7 @@
 import * as React from "react";
-import {Fragment, useState} from "react";
+import {useState} from "react";
 //import {Form, Button, FormValue, FormField} from "hedongsheng-ui-react";
-import {Form, Button, FormValue, FormField, Validator} from "../../lib";
+import {Form, FormValue, FormField, Button, Validator, FormErrors} from "../../lib";
 
 const FormExample = () => {
     const [formData, setFormData] = useState<FormValue>({
@@ -15,6 +15,9 @@ const FormExample = () => {
         {name: 'password', label: '密码', input: {type: 'password'}},
         {name: 'phone', label: 'phone-比较长的lanel---', input: {type: 'text'}},
     ]);
+
+    const [errors, setErrors] = useState<FormErrors>({});
+
     const rules = [
         {
             key: 'name',
@@ -42,6 +45,7 @@ const FormExample = () => {
         const errors = Validator(formData, rules);
         console.log('errors');
         console.log(errors)
+        setErrors(errors)
     };
     return (
         <div>
@@ -49,15 +53,12 @@ const FormExample = () => {
                 value={formData}
                 fields={fields}
                 labelWidth={"80px"}
-                labelPosition="right"
-                onSubmit={onSubmit}
-                onChange={onChange}
-                buttons={
-                    <Fragment>
-                        <Button size='small'>返回</Button>
-                        <Button size='small' type="submit">提交</Button>
-                    </Fragment>
-                }/>
+                errors={errors}
+                labelPosition="justify"
+                onChange={onChange}/>
+            <div>
+                <Button onClick={onSubmit}>提交</Button>
+            </div>
         </div>
     );
 };
