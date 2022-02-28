@@ -54,7 +54,8 @@ const FormExample = () => {
                 fields={fields}
                 labelWidth={"80px"}
                 errors={errors}
-                labelPosition="justify"
+                labelPosition="left"
+                colon={true}
                 onChange={onChange}/>
             <div>
                 <Button onClick={onSubmit}>提交</Button>

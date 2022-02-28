@@ -1,56 +1,63 @@
 @import "../index.less";
 
 .dodo-form {
-    td {
-        padding: 4px 0;
-
+    .dodo-form-row {
+        display: flex;
+        align-items: flex-start;
+        margin: @padding-md 0;
     }
-
-    .dodo-form-label {
-        text-align: right;
-        margin-right: (@padding-md);
-
+    .dodo-form-label-wrap {
+        display: flex;
+        align-items: flex-start;
         &.dodo-form-right {
-            text-align: right;
+            justify-content: right;
+            .dodo-form-label {
+                text-align: right;
+            }
         }
-
         &.dodo-form-left {
-            text-align: left;
+            justify-content: left;
+            .dodo-form-label {
+                text-align: left;
+            }
         }
         &.dodo-form-center {
-            text-align: center;
+            justify-content: center;
+            .dodo-form-label {
+                text-align: center;
+            }
         }
         &.dodo-form-justify {
-            position: relative;
-
-            .dodo-form-placeholderLabel {
-                opacity: 0;
-            }
-            .dodo-form-labelShow {
-                width: 100%;
-                position: absolute;
-                top: 0;
-                text-align: justify;
-                &:after {
-                    content: "";
+            .dodo-form-label {
+                flex: 1;
+                position: relative;
+                .dodo-form-placeholder-label {
+                    opacity: 0;
+                }
+                .dodo-form-label-show {
                     width: 100%;
-                    height: 1em;
-                    line-height: 1em;
-                    display: inline-block;
-                    overflow: hidden;
+                    position: absolute;
+                    top: 0;
+                    text-align: justify;
+                    &:after {
+                        content: "";
+                        width: 100%;
+                        height: 1em;
+                        line-height: 1em;
+                        display: inline-block;
+                        overflow: hidden;
+                    }
                 }
             }
-
-
         }
-
     }
 
-    .do-input {
-        margin-left: 10px;
-    }
 
-    .dodo-button {
-        margin-right: 10px;
+
+    .dodo-form-colon {
+        padding: 0 @padding-base;
+    }
+    .dodo-form-item {
+        margin-left: @padding-md;
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "hedongsheng-ui-react",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "my ui for react",
   "main": "dist/lib/index.js",
   "files": [

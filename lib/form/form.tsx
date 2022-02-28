@@ -41,10 +41,13 @@ interface Props {
     value: FormValue;
     fields: FormField[];
     onChange: (value: FormValue) => void;
-    errors?: FormErrors
+    errors?: FormErrors;
+    colon?: boolean
 }
 
 const Form: React.FunctionComponent<Props> = (props) => {
+
+    const {fields, labelPosition} = props;
     const onInputChange = (name: string, e: any) => {
         props.onChange({...props.value, [name]: e.target.value});
     };
@@ -73,8 +76,36 @@ const Form: React.FunctionComponent<Props> = (props) => {
         }
     };
 
-
     const horizontalLayout = (
+        <div className={sc('wrap')}>
+            {fields.map(f => {
+                return (
+                    <div key={f.name} className={sc('row')}>
+                        <div style={labelStyle()} className={classes(sc('label-wrap'), sc(labelPosition))}>
+                            {labelPosition === 'justify'
+                                ? <div className={sc('label')}>
+                                    <div className={sc('placeholder-label')}>{f.label}</div>
+                                    <div className={sc('label-show')}>{f.label}</div>
+                                </div>
+                                : <div className={sc('label')}>
+                                    {f.label}
+                                </div>}
+                            {props.colon ? <div className={sc('colon')}>:</div> : null}
+                        </div>
+                        <div className={sc('item')}>
+                            <div>{renderInput(f)}</div>
+                            {getErrorText(f.name)
+                                ? <div>{getErrorText(f.name)}</div>
+                                : null}
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+    )
+
+
+    const xx = (
         <table className={sc('table')}>
             <tbody>
             {props.fields.map(f =>
@@ -84,27 +115,27 @@ const Form: React.FunctionComponent<Props> = (props) => {
                             {props.labelPosition === 'justify'
                                 ? <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>
                                     <div className={sc('placeholderLabel')}>{f.label}</div>
-                                    <div className={sc('labelShow')} >{f.label}</div>
+                                    <div className={sc('labelShow')}>{f.label}</div>
                                 </div>
                                 : <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>
                                     {f.label}
                                 </div>}
                         </td>
                         <td className={sc('td')}>
-                            {renderInput(f)}
+                            <div>{renderInput(f)}</div>
+                            {getErrorText(f.name)
+                                ? <div>{getErrorText(f.name)}</div>
+                                : null}
                         </td>
                     </tr>
-                    {getErrorText(f.name)
-                        ? <tr>
-                            <td/>
-                            <td>{getErrorText(f.name)}</td>
-                        </tr>
-                        : null}
                 </Fragment>
             )}
             </tbody>
         </table>
     );
+    console.log(xx);
+
+
     const verticalLayout = <div>
         {props.fields.map(f =>
             <div key={f.name} className={sc('row')}>
