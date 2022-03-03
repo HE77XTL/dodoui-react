@@ -58,6 +58,7 @@ const FormExample = () => {
     return (
         <div>
             <Form
+                layout='horizontal'
                 value={formData}
                 fields={fields}
                 labelWidth={"80px"}

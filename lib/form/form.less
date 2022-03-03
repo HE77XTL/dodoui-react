@@ -1,14 +1,28 @@
 @import "../index.less";
 
+
 .dodo-form {
+    .dodo-form-asterisk {
+        color: @red;
+    }
+    .dodo-form-item {
+        position: relative;
+        .dodo-form-error {
+            color: @error-color;
+            font-size: @font-size-sm;
+            position: absolute;
+            left: 0;
+            border-bottom: 0;
+        }
+    }
+}
+.dodo-form-horizontal {
     .dodo-form-row {
         display: flex;
         align-items: flex-start;
         margin: @padding-lg 0;
     }
-    .dodo-form-asterisk {
-        color: @red;
-    }
+
     .dodo-form-label-wrap {
         display: flex;
         align-items: flex-start;
@@ -67,20 +81,29 @@
 
     }
 
-
-
     .dodo-form-colon {
         padding: 0 @padding-base;
     }
     .dodo-form-item {
         margin-left: @padding-md;
-        position: relative;
-        .dodo-form-error {
-            color: @error-color;
-            font-size: @font-size-sm;
-            position: absolute;
-            left: 0;
-            border-bottom: 0;
+    }
+}
+
+.dodo-form-vertical {
+    .dodo-form-row {
+        margin: @padding-lg 0;
+    }
+    .dodo-form-label-wrap {
+        display: flex;
+        margin-bottom: @padding-base;
+        &.dodo-form-right {
+            justify-content: right;
+        }
+        &.dodo-form-left {
+            justify-content: left;
+        }
+        &.dodo-form-center {
+            justify-content: center;
         }
     }
 }

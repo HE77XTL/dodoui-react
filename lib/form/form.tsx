@@ -39,7 +39,7 @@ export type FormRules = Array<FormRule>
 
 interface Props {
     layout?: 'vertical' | 'horizontal';
-    labelPosition?: 'left' | 'right' | 'center' | 'justify',
+    labelPosition?:  'left' | 'right' | 'center' | 'justify',
     labelWidth?: string,
     value: FormValue;
     fields: FormField[];
@@ -122,18 +122,36 @@ const Form: React.FunctionComponent<Props> = (props) => {
                 )
             })}
         </div>
-    )
-    const verticalLayout = <div>
-        {props.fields.map(f =>
-            <div key={f.name} className={sc('row')}>
-                <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>{f.label}</div>
-                {renderInput(f)}
-            </div>
-        )}
-    </div>;
+    );
+
+    const verticalLayout = (
+        <div className={sc('wrap')}>
+            {fields.map(f => {
+                return (
+                    <div key={f.name} className={sc('row')}>
+                        <div className={classes(sc('label-wrap'), sc(labelPosition))}>
+                            {isRule(f.name) ? <div className={sc('asterisk')}>*</div> : null}
+                            <div className={sc('label')}>
+                                {f.label}
+                            </div>
+                            {props.colon ? <div className={sc('colon')}>:</div> : null}
+                        </div>
+                        <div className={sc('item')}>
+                            <div>{renderInput(f)}</div>
+                            {isError(f.name)
+                                ? <div className={sc('error')}>{getErrorText(f.name)}</div>
+                                : null}
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+    );
+
+
     return (
         <div className={sc('wrapper')}>
-            <form className={sc('', props.layout)}>
+            <form className={classes(sc(''), sc(props.layout))}>
                 {props.layout === 'horizontal' ?
                     horizontalLayout :
                     verticalLayout
