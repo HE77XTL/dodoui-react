@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {ReactNode, Fragment} from 'react';
+import {ReactNode} from 'react';
 import './form.less';
 import DoInput from "../input/input";
 import classes, {scopedClassMaker} from "../helpers/classes";
+import {isEmpty} from "../helpers/utils";
 
 const sc = scopedClassMaker("dodo-form");
 
@@ -34,6 +35,8 @@ export interface FormRule {
     pattern?: RegExp;
 }
 
+export type FormRules = Array<FormRule>
+
 interface Props {
     layout?: 'vertical' | 'horizontal';
     labelPosition?: 'left' | 'right' | 'center' | 'justify',
@@ -41,8 +44,10 @@ interface Props {
     value: FormValue;
     fields: FormField[];
     onChange: (value: FormValue) => void;
+    rules?: FormRules;
     errors?: FormErrors;
-    colon?: boolean
+    colon?: boolean,
+    hideRequiredAsterisk?: boolean,
 }
 
 const Form: React.FunctionComponent<Props> = (props) => {
@@ -59,7 +64,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
                          onChange={onInputChange.bind(null, field.name)}/>}
         </div>;
 
-    const labelStyle = function () {
+    const labelStyle = () => {
         const widthStyle = props.labelWidth ? {
             width: props.labelWidth
         } : {};
@@ -68,12 +73,25 @@ const Form: React.FunctionComponent<Props> = (props) => {
         }
     };
 
-    const getErrorText = function (key: string) {
+    const getErrorText = (key: string) => {
         if (props.errors && props.errors[key]) {
             return props.errors[key][0]
         } else {
             return ""
         }
+    };
+    const isError = (key: string) => {
+        return props.errors && !isEmpty(props.errors[key])
+    };
+    const isRule = (key: string): boolean => {
+        if (props.rules) {
+            return !!props.rules.find((rule) => {
+                return rule.key === key
+            })
+        } else {
+            return false
+        }
+
     };
 
     const horizontalLayout = (
@@ -81,7 +99,9 @@ const Form: React.FunctionComponent<Props> = (props) => {
             {fields.map(f => {
                 return (
                     <div key={f.name} className={sc('row')}>
-                        <div style={labelStyle()} className={classes(sc('label-wrap'), sc(labelPosition))}>
+                        <div style={labelStyle()}
+                             className={classes(sc('label-wrap'), sc(labelPosition), isRule(f.name) ? sc('rule') : '')}>
+                            {isRule(f.name) ? <div className={sc('asterisk')}>*</div> : null}
                             {labelPosition === 'justify'
                                 ? <div className={sc('label')}>
                                     <div className={sc('placeholder-label')}>{f.label}</div>
@@ -94,8 +114,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
                         </div>
                         <div className={sc('item')}>
                             <div>{renderInput(f)}</div>
-                            {getErrorText(f.name)
-                                ? <div>{getErrorText(f.name)}</div>
+                            {isError(f.name)
+                                ? <div className={sc('error')}>{getErrorText(f.name)}</div>
                                 : null}
                         </div>
                     </div>
@@ -103,39 +123,6 @@ const Form: React.FunctionComponent<Props> = (props) => {
             })}
         </div>
     )
-
-
-    const xx = (
-        <table className={sc('table')}>
-            <tbody>
-            {props.fields.map(f =>
-                <Fragment key={f.name}>
-                    <tr className={sc('tr')}>
-                        <td className={sc('td')}>
-                            {props.labelPosition === 'justify'
-                                ? <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>
-                                    <div className={sc('placeholderLabel')}>{f.label}</div>
-                                    <div className={sc('labelShow')}>{f.label}</div>
-                                </div>
-                                : <div style={labelStyle()} className={classes(sc('label'), sc(props.labelPosition))}>
-                                    {f.label}
-                                </div>}
-                        </td>
-                        <td className={sc('td')}>
-                            <div>{renderInput(f)}</div>
-                            {getErrorText(f.name)
-                                ? <div>{getErrorText(f.name)}</div>
-                                : null}
-                        </td>
-                    </tr>
-                </Fragment>
-            )}
-            </tbody>
-        </table>
-    );
-    console.log(xx);
-
-
     const verticalLayout = <div>
         {props.fields.map(f =>
             <div key={f.name} className={sc('row')}>
@@ -158,7 +145,8 @@ const Form: React.FunctionComponent<Props> = (props) => {
 
 Form.defaultProps = {
     layout: 'horizontal',
-    labelPosition: 'right'
+    labelPosition: 'right',
+    hideRequiredAsterisk: false,
 };
 Form.propTypes = {};
 

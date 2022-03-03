@@ -4,11 +4,17 @@
     .dodo-form-row {
         display: flex;
         align-items: flex-start;
-        margin: @padding-md 0;
+        margin: @padding-lg 0;
+    }
+    .dodo-form-asterisk {
+        color: @red;
     }
     .dodo-form-label-wrap {
         display: flex;
         align-items: flex-start;
+        padding-left: 0.5em;
+        box-sizing: border-box;
+
         &.dodo-form-right {
             justify-content: right;
             .dodo-form-label {
@@ -50,6 +56,15 @@
                 }
             }
         }
+
+        .dodo-form-asterisk {
+            width: 0.5em;
+        }
+
+        &.dodo-form-rule {
+            padding-left: 0;
+        }
+
     }
 
 
@@ -59,5 +74,13 @@
     }
     .dodo-form-item {
         margin-left: @padding-md;
+        position: relative;
+        .dodo-form-error {
+            color: @error-color;
+            font-size: @font-size-sm;
+            position: absolute;
+            left: 0;
+            border-bottom: 0;
+        }
     }
 }

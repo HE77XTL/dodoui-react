@@ -1,7 +1,5 @@
-import {FormValue, FormRule, FormErrors} from './form'
+import {FormValue, FormRule, FormRules, FormErrors} from './form'
 import {isEmpty} from '../helpers/utils'
-
-type FormRules = Array<FormRule>
 
 const getValidResult = (rule: FormRule, value: any): boolean => {
     if (rule.required) {
