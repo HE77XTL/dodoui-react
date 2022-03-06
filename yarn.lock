@@ -3874,12 +3874,12 @@ he@1.2.x, he@^1.1.1, he@^1.2.0:
   resolved "https://registry.npm.taobao.org/he/download/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha1-hK5l+n6vsWX922FWauFLrwVmTw8=
 
-hedongsheng-ui-react@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.npmjs.org/hedongsheng-ui-react/-/hedongsheng-ui-react-0.2.3.tgz#cc89a5da58b1f30f83b484c868a1a822988f61b1"
-  integrity sha512-x+3Otj1RR8qjDO6G5ltAMlWXbIzLgdjggYQAs8oUx4UBap4P3qdI2EF60cXiUsJP3oO7wi2dsoBBY+XyBD5rrg==
+hedongsheng-ui-react@^0.2.7:
+  version "0.2.8"
+  resolved "https://registry.npmjs.org/hedongsheng-ui-react/-/hedongsheng-ui-react-0.2.8.tgz#747db10a2f65d0afee1371b73f7d6cb089e0260d"
+  integrity sha512-WgRyAYHFSgIlH9u/SxeqKK0vVdpdHB/Q/S2v9tVj76T4h0+X/aKzbeH7isCIuGB6G+VrIycEPd/79lKubRvZMw==
   dependencies:
-    hedongsheng-ui-react "^0.2.3"
+    hedongsheng-ui-react "^0.2.7"
     react "^16.13.1"
     react-dom "^16.13.1"
 
