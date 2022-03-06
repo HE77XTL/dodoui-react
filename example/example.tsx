@@ -14,6 +14,7 @@ import InputDemo from "./input/inputDemo";
 import FormDemo from "./form/formDemo";
 import ExampleAside from './exampleAside'
 import ScaleImageDemo from './scaleImage/scaleImageDemo'
+import SelectDemo from './select/selectDemo'
 
 const logo = require("./common/avatar.jpg").default;
 
@@ -33,8 +34,8 @@ ReactDOM.render(
         <div className='dodo-site'>
             <ExampleAside/>
             <main className='dodo-main'>
-                <Route path="/" exact={true} >
-                    <Redirect to="/icon" />
+                <Route path="/" exact={true}>
+                    <Redirect to="/icon"/>
                 </Route>
                 <Route path="/icon" component={IconDemo}/>
                 <Route path="/dialog" component={DialogDemo}/>
@@ -43,6 +44,7 @@ ReactDOM.render(
                 <Route path="/input" component={InputDemo}/>
                 <Route path="/form" component={FormDemo}/>
                 <Route path="/scaleImage" component={ScaleImageDemo}/>
+                <Route path="/select" component={SelectDemo}/>
             </main>
             {/*<footer className='dodo-footer'>*/}
             {/*    DoDo UI*/}

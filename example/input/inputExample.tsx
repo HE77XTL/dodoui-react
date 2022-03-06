@@ -16,7 +16,9 @@ const InputExample = () => {
             <br/>
             <Input
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => {
+                    console.log(setValue(e.target.value))
+                }}
                 placeholder='请输入'/>
         </div>
     );

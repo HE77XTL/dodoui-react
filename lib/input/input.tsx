@@ -1,7 +1,8 @@
-import React, {useState, InputHTMLAttributes, useRef} from "react";
+import React, {InputHTMLAttributes, useRef, useState} from "react";
 import Icon from '../../lib/icon/icon'
 import classes, {scopedClassMaker} from "../helpers/classes";
 import './input.less'
+
 import {isEmpty} from "../helpers/utils";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
@@ -9,39 +10,40 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const DoInput: React.FunctionComponent<Props> = (props) => {
+    const [clearIconVisible, setClearIconVisible] = useState(getInitIconVisible());
     const refInput = useRef(null);
     const sc = scopedClassMaker("dodo");
-    const {className, value = "", onChange, ...rest} = props;
+    const {className, onChange, ...rest} = props;
     const clearableClass = props.clearable ? 'clearable' : '';
-    const [doValue, setDoValue] = useState(value);
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setDoValue(e.target.value);
-        onChange && onChange(e)
-    }
 
     function onClear(e: React.MouseEvent<SVGGElement>) {
-        if (refInput.current) {
-            // click clear icon
-            const event = Object.create(e);
-            const target = refInput.current ? refInput.current : {};
-            event.target = target;
-            event.currentTarget = target;
+        if (refInput && refInput.current) {
             // @ts-ignore
-            target.value = '';
-            onChange && onChange(event); // reset target ref value
+            refInput.current.value = ''
         }
-        setDoValue('')
     }
+
+    function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        onChange && onChange(e);
+        setClearIconVisible(props.clearable && !isEmpty(e.target.value))
+    }
+
+    function getInitIconVisible() {
+        const value = props.defaultValue || props.value;
+        return props.clearable && !isEmpty(value)
+    }
+
 
     return (
         <div className={classes(sc("input-wrap"))}>
             <input
+                {...rest}
                 ref={refInput}
-                value={doValue}
-                onChange={handleChange}
-                className={classes(sc("input"), className, clearableClass)}{...rest}/>
-            {props.clearable && !isEmpty(doValue) ?
+                className={classes(sc("input"), className, clearableClass)}
+                onChange={onInputChange}
+            />
+            {clearIconVisible ?
                 <Icon name="clear" onClick={onClear} className={sc("input-clearable-icon")}/> : null}
         </div>
     );

@@ -1,0 +1,58 @@
+@import "../index.less";
+
+.dodo-select {
+    position: relative;
+    font-size: 14px;
+
+    .dodo-options {
+        position: absolute;
+        z-index: 1;
+        top: @input-height;
+        left: 0;
+        right: 0;
+        border-radius: @radius-xs;
+        margin: 0;
+        background: @white;
+        overflow: hidden;
+        opacity: 0;
+        height: 0;
+        border: none;
+
+        .dodo-option-panel {
+            list-style: none;
+            margin: 0;
+            padding: @padding-sm 0;
+
+            .dodo-option-item {
+                padding: @padding-xs @padding-sm;
+                cursor: pointer;
+
+                &:hover {
+                    background: @gray-3;
+                }
+
+                &.dodo-active {
+                    color: @active-font-color;
+                }
+            }
+        }
+
+        &.dodo-active {
+            opacity: 1;
+            height: auto;
+            margin-top: @padding-base;
+            border: 1px solid @gray-3;
+            box-shadow: 0 2px 12px 0 @opacityColor-black-1;
+        }
+    }
+
+    .globWrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -999;
+        opacity: 0;
+    }
+}

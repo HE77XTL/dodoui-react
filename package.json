@@ -1,6 +1,6 @@
 {
   "name": "hedongsheng-ui-react",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "description": "my ui for react",
   "main": "dist/lib/index.js",
   "files": [
@@ -57,7 +57,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "hedongsheng-ui-react": "^0.2.3",
+    "hedongsheng-ui-react": "^0.2.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

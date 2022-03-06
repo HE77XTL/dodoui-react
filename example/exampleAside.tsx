@@ -44,6 +44,9 @@ const ExampleAside = () => {
                 <NavLink to="/input" className='menuItem' activeClassName='active'>input 输入框</NavLink>
             </dd>
             <dd>
+                <NavLink to="/select" className='menuItem' activeClassName='active'>select 选择器</NavLink>
+            </dd>
+            <dd>
                 <NavLink to="/form" className='menuItem' activeClassName='active'>form 表单</NavLink>
             </dd>
             <dt className='menuItem'>
