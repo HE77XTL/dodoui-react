@@ -2,9 +2,8 @@ import React, {useEffect, useRef, useState} from "react";
 import {Input} from "../../lib/index";
 import './select.less'
 import classes, {scopedClassMaker} from "../helpers/classes";
-import GlobalClickTemp from '../helpers/globalClickTemp/globalClickTemp'
 
-type valueType = string | number;
+type valueType = string | number ;
 
 export interface Option {
     label: string;
@@ -26,32 +25,23 @@ interface Props {
 const sc = scopedClassMaker("dodo");
 const DoSelect: React.FunctionComponent<Props> = (props) => {
     const inputRef = useRef(null);
+    const optionsRef = useRef(null);
+    const [inputPlaceHolder, setInputPlaceHolder] = useState<string | undefined>("123");
+    const [vdOptions, setVdOptions] = useState(props.options);
     const [optionVisible, setOptionVisible] = useState(false);
     const [currentValue, setCurrentValue] = useState<number | string | undefined>(props.defaultValue || props.value);
     const [inputValue, setInputValue] = useState<number | string>(getInputValue(props.value || props.defaultValue));
     const {filterable, options, className, onChange} = props;
 
+
     useEffect(() => {
-        document.body.addEventListener('click', componentOutSideClick);
-        return () => {
-            document.body.removeEventListener('click', componentOutSideClick)
+        if (props.value === undefined) {
+            return
         }
-
-    }, []);
-
-    useEffect(() => {
         setCurrentValue(props.value);
         setInputValue(getInputValue(props.value));
     }, [props.value]);
 
-    // @ts-ignore
-    function componentOutSideClick(e) {
-        // @ts-ignore
-        const isContainClick = inputRef.current?.contains(e.target);
-        if (!isContainClick) {
-            setOptionVisible(false)
-        }
-    }
 
     function getInputValue(value: string | number | undefined) {
         const selectItem = props.options.find((k) => {
@@ -72,7 +62,19 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
     }
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setInputValue(e.target.value)
+        console.log(5555)
+        console.log(e.target.value)
+        setOptionVisible(true);
+        const value = e.target.value;
+        setInputValue(value);
+        searchFilter(value);
+    }
+
+    function searchFilter(inputValue: string) {
+        const searchOptions = options.filter(k => {
+            return k.label.includes(inputValue);
+        });
+        setVdOptions(searchOptions)
     }
 
     return (
@@ -80,14 +82,27 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
             <Input
                 value={inputValue}
                 type="text"
-                onClick={() => {
-                    setOptionVisible(!optionVisible)
+                placeholder={inputPlaceHolder}
+                onFocus={() => {
+                    setOptionVisible(true);
+                    setInputPlaceHolder(getInputValue(currentValue));
+                }}
+                onBlur={() => {
+                    setInputValue(getInputValue(currentValue));
+
+
+                    setTimeout(()=> {
+                        setOptionVisible(false)
+                    }, 100)
                 }}
                 onChange={onInputChange}
                 readOnly={!filterable}/>
-            <div className={classes(sc('options'), optionVisible ? sc('active') : '')}>
+            <div ref={optionsRef} className={classes(sc('options'), optionVisible ? sc('active') : '')} tabIndex={0}
+                 onBlur={() => {
+                     setOptionVisible(false)
+                 }}>
                 <ul className={sc('option-panel')}>
-                    {options.map(item => {
+                    {vdOptions.map(item => {
                         return (
                             <li key={item.value}
                                 onClick={() => {
@@ -98,13 +113,11 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
                             </li>
                         )
                     })}
+                    {vdOptions.length === 0 ? <div className={'noDataTips'}>
+                        无匹配数据
+                    </div> : null}
                 </ul>
             </div>
-            <GlobalClickTemp onClick={() => {
-                if (optionVisible) {
-                    setOptionVisible(false)
-                }
-            }}/>
         </div>
     )
 };
