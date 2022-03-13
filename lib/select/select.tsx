@@ -1,117 +1,130 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Input} from "../../lib/index";
-import './select.less'
+import './select.less';
 import classes, {scopedClassMaker} from "../helpers/classes";
+import {isEmpty} from "../helpers/utils";
 
-type valueType = string | number ;
+type valueType = string | number | undefined;
 
-export interface Option {
+export interface OptionType {
     label: string;
     value: string | number
 }
 
-export type OptionS = Array<Option>
+export type OptionInterface = Array<OptionType>
 
 
 interface Props {
     defaultValue?: valueType;
     value?: valueType;
+    placeHolder?: valueType;
     className?: string;
+    disabled?: boolean;
     filterable?: boolean;
-    options: OptionS;
-    onChange: (data: string | number) => void
+    options: OptionInterface;
+    onChange: (data: valueType) => void
 }
 
 const sc = scopedClassMaker("dodo");
 const DoSelect: React.FunctionComponent<Props> = (props) => {
-    const inputRef = useRef(null);
-    const optionsRef = useRef(null);
-    const [inputPlaceHolder, setInputPlaceHolder] = useState<string | undefined>("123");
-    const [vdOptions, setVdOptions] = useState(props.options);
+
+    const {filterable, options, className, onChange, value, defaultValue} = props;
+
+    const [vdInputValue, setVdInputValue] = useState<valueType>(getInputValue(getInitValue(value, defaultValue)));
+    const [vdPlaceholder, setVdPlaceholder] = useState<string | undefined>(getInitValue(value, defaultValue).toString());
+    const [vdOptions, setVdOptions] = useState(options);
     const [optionVisible, setOptionVisible] = useState(false);
-    const [currentValue, setCurrentValue] = useState<number | string | undefined>(props.defaultValue || props.value);
-    const [inputValue, setInputValue] = useState<number | string>(getInputValue(props.value || props.defaultValue));
-    const {filterable, options, className, onChange} = props;
+    const [currentValue, setCurrentValue] = useState<valueType>(getInitValue(value, defaultValue));
 
 
     useEffect(() => {
-        if (props.value === undefined) {
-            return
-        }
-        setCurrentValue(props.value);
-        setInputValue(getInputValue(props.value));
+        console.log('e');
+        console.log(value);
+        const inputShowText = getInputValue(value);
+        setCurrentValue(value);
+        setVdPlaceholder(inputShowText);
+        setVdInputValue(inputShowText);
     }, [props.value]);
 
-
-    function getInputValue(value: string | number | undefined) {
-        const selectItem = props.options.find((k) => {
-            return k.value === value
-        });
-        if (selectItem) {
-            return selectItem.label
+    function getInitValue(value?: valueType, defaultValue?: valueType) {
+        if (value === undefined || value === null) {
+            return defaultValue || '';
         } else {
-            return ''
+            return value;
         }
     }
 
-    function onOptionClick(data: Option) {
-        setCurrentValue(data.value);
-        setInputValue(data.label);
-        setOptionVisible(false);
+
+    function getInputValue(value: valueType) {
+        if (isEmpty(value)) {
+            return '';
+        }
+        const selectItem = props.options.find((k) => {
+            return k.value === value;
+        });
+        if (selectItem) {
+            return selectItem.label;
+        } else {
+            return '';
+        }
+    }
+
+    function onOptionClick(data: OptionType) {
+        if (props.value === undefined) {
+            const inputShowText = getInputValue(data.value);
+            setCurrentValue(data.value);
+            setVdPlaceholder(inputShowText);
+            setVdInputValue(inputShowText);
+            setOptionVisible(false);
+        }
         onChange && onChange(data.value);
+
     }
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-        console.log(5555)
-        console.log(e.target.value)
-        setOptionVisible(true);
         const value = e.target.value;
-        setInputValue(value);
+        setVdInputValue(value);
         searchFilter(value);
     }
+
 
     function searchFilter(inputValue: string) {
         const searchOptions = options.filter(k => {
             return k.label.includes(inputValue);
         });
-        setVdOptions(searchOptions)
+        setVdOptions(searchOptions);
     }
 
     return (
-        <div ref={inputRef} className={classes(className, sc('select'))}>
+        <div className={classes(className, sc('select'))}>
             <Input
-                value={inputValue}
+                value={vdInputValue}
                 type="text"
-                placeholder={inputPlaceHolder}
+                disabled={props.disabled}
+                placeholder={vdPlaceholder}
                 onFocus={() => {
                     setOptionVisible(true);
-                    setInputPlaceHolder(getInputValue(currentValue));
+                    setVdInputValue("");
+                    setVdOptions(options);
                 }}
                 onBlur={() => {
-                    setInputValue(getInputValue(currentValue));
-
-
-                    setTimeout(()=> {
-                        setOptionVisible(false)
-                    }, 100)
+                    setVdInputValue(getInputValue(currentValue));
+                    setOptionVisible(false);
                 }}
                 onChange={onInputChange}
                 readOnly={!filterable}/>
-            <div ref={optionsRef} className={classes(sc('options'), optionVisible ? sc('active') : '')} tabIndex={0}
-                 onBlur={() => {
-                     setOptionVisible(false)
-                 }}>
+            <div className={classes(sc('options'), optionVisible ? sc('active') : '')}>
                 <ul className={sc('option-panel')}>
                     {vdOptions.map(item => {
                         return (
                             <li key={item.value}
-                                onClick={() => {
-                                    onOptionClick(item)
+                                onMouseDown={() => {
+                                    onOptionClick(item);
                                 }}
                                 className={classes(sc('option-item'), currentValue === item.value ? sc('active') : '')}>
                                 {item.label}
                             </li>
-                        )
+                        );
                     })}
                     {vdOptions.length === 0 ? <div className={'noDataTips'}>
                         无匹配数据
@@ -119,11 +132,11 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
                 </ul>
             </div>
         </div>
-    )
+    );
 };
 
 DoSelect.defaultProps = {
     filterable: false
 };
 
-export default DoSelect
+export default DoSelect;
