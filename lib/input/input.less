@@ -33,13 +33,27 @@
 
     }
 
-    .dodo-input-clearable-icon {
+    .dodo-input-icon {
         width: 22px;
         height: 22px;
         position: absolute;
         right: 8px;
         top: 6px;
         cursor: pointer;
+
+        // 个人认为一个输入框同时存在两个icon (clear password )是比较丑的行为
+        // 但还是支持一下
+        &.dodo-password-clear-icon {
+            right: 32px;
+        }
+    }
+
+
+
+
+
+    .dodo-input-icon-password {
+
     }
 
 }
