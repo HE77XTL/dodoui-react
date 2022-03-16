@@ -7,11 +7,14 @@ import {isEmpty} from "../helpers/utils";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     clearable?: boolean,
+    // 不用原生的type, 根据自己的实际项目去不断扩充
     businessType?: 'password'
 }
 
 const DoInput: React.FunctionComponent<Props> = (props) => {
-    const [passwordType, setPasswordType] = useState('show');
+    // 用于处理浏览器自带的一些好用的type
+    const [inputType, setInputType] = useState('text');
+    const [passwordIcon, setPasswordIcon] = useState('show');
     const [clearIconVisible, setClearIconVisible] = useState(getInitIconVisible());
     const refInput = useRef(null);
     const sc = scopedClassMaker("dodo");
@@ -40,8 +43,9 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
     }
 
     function onPasswordEyeToggle() {
-        const nextType = passwordType === 'show' ? 'hide' : 'show';
-        setPasswordType(nextType);
+        const nextIcon = passwordIcon === 'show' ? 'hide' : 'show';
+        setPasswordIcon(nextIcon);
+        setInputType(nextIcon === 'hide' ? 'password' : 'text');
     }
 
 
@@ -49,6 +53,7 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
         <div className={classes(sc("input-wrap"))}>
             <input
                 {...rest}
+                type={inputType}
                 ref={refInput}
                 className={classes(sc("input"), className, clearableClass)}
                 onChange={onInputChange}
@@ -59,7 +64,7 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
                         className={classes(sc("input-icon"), props.businessType === 'password' ? sc('password-clear-icon') : '')}/>
                 : null}
             {props.businessType === 'password' ?
-                <Icon name={`${passwordType === 'show' ? 'eye_open' : 'eye_close'}`}
+                <Icon name={`${passwordIcon === 'show' ? 'eye_open' : 'eye_close'}`}
                       onClick={onPasswordEyeToggle}
                       className={sc("input-icon")}/>
                 : null}

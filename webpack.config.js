@@ -16,6 +16,8 @@ module.exports = {
     devServer: {
         hot: true,
         historyApiFallback: true,
+        port: 9000,
+        host: "0.0.0.0",
     },
     plugins: [],
     module: {
