@@ -10,8 +10,8 @@ const InputExamplePassword = () => {
             <div className={'doc-tip'}>密码</div>
             <Input
                 clearable={true}
-                businessType='password'
-                onChange={e => console.log(e.target.value)}
+                type='password'
+                onChange={value => console.log(value)}
                 placeholder='请输入'/>
         </div>
     );

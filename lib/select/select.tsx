@@ -2,12 +2,12 @@ import React, {useEffect, useState} from "react";
 import {Input} from "../../lib/index";
 import './select.less';
 import classes, {scopedClassMaker} from "../helpers/classes";
-import {isEmpty} from "../helpers/utils";
+import {isEmpty, InputValueType} from "../helpers/utils";
 
 type valueType = string | number | undefined;
 
 export interface OptionType {
-    label: string;
+    label: string | number;
     value: string | number
 }
 
@@ -81,14 +81,13 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
 
     }
 
-    function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const value = e.target.value;
+    function onInputChange(value: InputValueType) {
         setVdInputValue(value);
-        searchFilter(value);
+        searchFilter(value || '');
     }
 
 
-    function searchFilter(inputValue: string) {
+    function searchFilter(inputValue: string | number) {
         const searchOptions = options.filter(k => {
             return k.label.includes(inputValue);
         });

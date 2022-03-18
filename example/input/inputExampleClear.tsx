@@ -10,7 +10,7 @@ const InputExampleClear = () => {
             <div className={'doc-tip'}>可清空</div>
             <Input
                 clearable={true}
-                onChange={e => console.log(e.target.value)}
+                onChange={value => console.log(value)}
                 placeholder='请输入'/>
         </div>
     );
