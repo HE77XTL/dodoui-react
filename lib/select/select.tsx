@@ -2,57 +2,44 @@ import React, {useEffect, useState} from "react";
 import {Input} from "../../lib/index";
 import './select.less';
 import classes, {scopedClassMaker} from "../helpers/classes";
-import {isEmpty, InputValueType} from "../helpers/utils";
+import {isEmpty} from "../helpers/utils";
+import {SelectValueType, OptionType, OptionInterface, getLabelFromOptions, getInitValue} from "../helpers/formUtils";
 
 type valueType = string | number | undefined;
 
-export interface OptionType {
-    label: string | number;
-    value: string | number
-}
-
-export type OptionInterface = Array<OptionType>
-
 
 interface Props {
-    defaultValue?: valueType;
-    value?: valueType;
-    placeHolder?: valueType;
+    defaultValue?: SelectValueType;
+    value?: SelectValueType;
+    placeHolder?: SelectValueType;
     className?: string;
     disabled?: boolean;
     filterable?: boolean;
     options: OptionInterface;
-    onChange: (data: valueType) => void
+    onChange: (data: SelectValueType) => void
 }
 
 const sc = scopedClassMaker("dodo");
 const DoSelect: React.FunctionComponent<Props> = (props) => {
 
-    const {filterable, options, className, onChange, value, defaultValue} = props;
+    const {value, defaultValue, filterable, options, className, onChange} = props;
 
-    const [vdInputValue, setVdInputValue] = useState<valueType>(getInputValue(getInitValue(value, defaultValue)));
-    const [vdPlaceholder, setVdPlaceholder] = useState<string | undefined>(getInitValue(value, defaultValue).toString());
+    const [vdInputValue, setVdInputValue] = useState<SelectValueType>(getLabelFromOptions(getInitValue({
+        value,
+        defaultValue
+    }), options));
+    const [vdPlaceholder, setVdPlaceholder] = useState<string | undefined>();
     const [vdOptions, setVdOptions] = useState(options);
     const [optionVisible, setOptionVisible] = useState(false);
-    const [currentValue, setCurrentValue] = useState<valueType>(getInitValue(value, defaultValue));
+    const [currentValue, setCurrentValue] = useState<valueType>(getInitValue({value, defaultValue}));
 
 
     useEffect(() => {
-        console.log('e');
-        console.log(value);
-        const inputShowText = getInputValue(value);
+        const inputShowText = getLabelFromOptions(value, options);
         setCurrentValue(value);
-        setVdPlaceholder(inputShowText);
+        setVdPlaceholder(inputShowText.toString());
         setVdInputValue(inputShowText);
     }, [props.value]);
-
-    function getInitValue(value?: valueType, defaultValue?: valueType) {
-        if (value === undefined || value === null) {
-            return defaultValue || '';
-        } else {
-            return value;
-        }
-    }
 
 
     function getInputValue(value: valueType) {
@@ -71,9 +58,9 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
 
     function onOptionClick(data: OptionType) {
         if (props.value === undefined) {
-            const inputShowText = getInputValue(data.value);
+            const inputShowText = getLabelFromOptions(data.value, options);
             setCurrentValue(data.value);
-            setVdPlaceholder(inputShowText);
+            setVdPlaceholder(inputShowText.toString());
             setVdInputValue(inputShowText);
             setOptionVisible(false);
         }
@@ -81,7 +68,7 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
 
     }
 
-    function onInputChange(value: InputValueType) {
+    function onInputChange(value: SelectValueType) {
         setVdInputValue(value);
         searchFilter(value || '');
     }
@@ -89,7 +76,7 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
 
     function searchFilter(inputValue: string | number) {
         const searchOptions = options.filter(k => {
-            return k.label.includes(inputValue);
+            return k.label.toString().includes(inputValue.toString());
         });
         setVdOptions(searchOptions);
     }

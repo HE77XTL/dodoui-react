@@ -3,20 +3,21 @@ import Icon from '../../lib/icon/icon';
 import classes, {scopedClassMaker} from "../helpers/classes";
 import './input.less';
 
-import {isEmpty, getInputInitValue, inputValueType} from "../helpers/utils";
+import {isEmpty} from "../helpers/utils";
+import {getInitValue, InputValueType} from "../helpers/formUtils";
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {
-    value?: inputValueType,
-    defaultValue?: inputValueType,
+    value?: InputValueType,
+    defaultValue?: InputValueType,
     type?: 'text' | 'password' | 'number',
-    onChange?: (data: inputValueType) => void,
+    onChange?: (data: InputValueType) => void,
     clearable?: boolean,
 }
 
 const DoInput: React.FunctionComponent<Props> = (props) => {
     const {value, defaultValue, className, ...rest} = props;
 
-    const [vdValue, setVdValue] = useState(getInputInitValue({value, defaultValue}));
+    const [vdValue, setVdValue] = useState(getInitValue({value, defaultValue}));
 
     // 用于处理浏览器自带的一些好用的type
     const [inputType, setInputType] = useState(props.type || 'text');
@@ -89,6 +90,6 @@ DoInput.defaultProps = {
     type: 'text'
 };
 
-export type valueType = inputValueType;
+export type valueType = InputValueType;
 
 export default DoInput;
