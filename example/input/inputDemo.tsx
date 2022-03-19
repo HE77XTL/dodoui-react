@@ -3,10 +3,13 @@ import Demo from "../common/demo";
 import InputExample from "./inputExample";
 import InputExampleDisable from "./inputExampleDisable";
 import InputExampleClear from "./inputExampleClear";
+import InputExamplePassword from "./inputExamplePassword";
 import {scopedClassMaker} from "../../lib/helpers/classes";
 
 const code = require("!!raw-loader!./inputExample");
 const codeDisable = require("!!raw-loader!./inputExampleDisable");
+const codeClear = require("!!raw-loader!./inputExampleClear");
+const codePassword = require("!!raw-loader!./inputExamplePassword");
 const sc = scopedClassMaker("doc");
 const InputDemo: React.FunctionComponent = () => {
     return (
@@ -29,10 +32,16 @@ const InputDemo: React.FunctionComponent = () => {
                         </Demo>
                     </div>
                     <div className={sc("exampleItem")}>
-                        <Demo code={codeDisable.default}>
+                        <Demo code={codeClear.default}>
                             <InputExampleClear/>
                         </Demo>
                     </div>
+                    <div className={sc("exampleItem")}>
+                        <Demo code={codePassword.default}>
+                            <InputExamplePassword/>
+                        </Demo>
+                    </div>
+
 
                 </div>
                 <div className={sc('demoAttributes.tsx')}>

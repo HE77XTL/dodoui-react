@@ -1,12 +1,15 @@
 import * as React from "react";
-import {Select} from 'hedongsheng-ui-react'
-import './selectExample.less'
+// import {Select, Button} from 'hedongsheng-ui-react'
+import {Select, Button} from '../../lib';
+import './selectExample.less';
 import {scopedClassMaker} from "../../lib/helpers/classes";
 import {useState} from "react";
 
+
 const sc = scopedClassMaker("doc");
 const SelectExample = () => {
-    const [value] = useState('apple')
+    const defaultValue = 'apple';
+    const [value, setValue] = useState<string | number>('banana');
     const options = [
         {
             label: '苹果',
@@ -19,19 +22,28 @@ const SelectExample = () => {
         {
             label: '橘子',
             value: 'orange'
-        }
+        },
     ];
 
     function onChange(data: string | number) {
-        console.log(data);
+        setValue(data);
     }
+
 
     return (
         <div className={sc('select-example')}>
-            <Select defaultValue={'orange'} value={value} options={options} className={sc('select')}
-                    onChange={onChange}/>
+            <Select
+                defaultValue={defaultValue}
+                value={value}
+                filterable={true}
+                options={options}
+                className={sc('select')}
+                onChange={onChange}/>
+            <Button size='small' className={sc('change-select-btn')} onClick={() => {
+                setValue('orange');
+            }}>change value to orange</Button>
         </div>
-    )
+    );
 };
 
-export default SelectExample
+export default SelectExample;

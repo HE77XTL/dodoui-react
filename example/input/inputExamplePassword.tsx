@@ -4,15 +4,16 @@ import {Input} from "../../lib/index";
 import {scopedClassMaker} from "../../lib/helpers/classes";
 
 const sc = scopedClassMaker("doc");
-const InputExampleClear = () => {
+const InputExamplePassword = () => {
     return (
         <div className={sc("input-wrap")}>
-            <div className={'doc-tip'}>可清空</div>
+            <div className={'doc-tip'}>密码</div>
             <Input
                 clearable={true}
+                type='password'
                 onChange={value => console.log(value)}
                 placeholder='请输入'/>
         </div>
     );
 };
-export default InputExampleClear;
+export default InputExamplePassword;

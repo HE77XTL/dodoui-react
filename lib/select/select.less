@@ -1,6 +1,7 @@
 @import "../index.less";
 
 .dodo-select {
+    display: inline-block;
     position: relative;
     font-size: 14px;
 
@@ -13,10 +14,19 @@
         border-radius: @radius-xs;
         margin: 0;
         background: @white;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
         opacity: 0;
         height: 0;
         border: none;
+        max-height: 120px;
+
+        &:focus {
+            outline: none;
+        }
+        &::-webkit-scrollbar {
+            width: 0;
+        }
 
         .dodo-option-panel {
             list-style: none;
@@ -34,6 +44,11 @@
                 &.dodo-active {
                     color: @active-font-color;
                 }
+            }
+            .noDataTips {
+                padding: @padding-xs @padding-sm;
+                text-align: center;
+                color: @gray-5;
             }
         }
 
