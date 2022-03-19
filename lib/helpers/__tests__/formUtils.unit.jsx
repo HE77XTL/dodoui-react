@@ -1,4 +1,4 @@
-import {getInitValue} from '../formUtils'
+import {getInitValue, getLabelFromOptions} from '../formUtils'
 
 describe('getInitValueTest', () => {
     it('value, defaultValue 均为空', () => {
@@ -17,4 +17,26 @@ describe('getInitValueTest', () => {
         const result = getInitValue({value: undefined, defaultValue: 'zoro'});
         expect(result).toEqual('zoro')
     });
+});
+
+describe('getLabelFromOptionsTest', () => {
+    const options = [
+        {
+            label: '123',
+            value: 123,
+        }
+    ];
+
+    it('获取label, value 有值', () => {
+        const result = getLabelFromOptions(123, options);
+        expect(result).toEqual('123')
+    });
+    it('获取label, value 为空', ()=> {
+        const result = getLabelFromOptions('', options);
+        expect(result).toEqual('')
+    });
+    it('获取label, value 有值， options 没有对应值', ()=> {
+        const result = getLabelFromOptions(1233, options);
+        expect(result).toEqual('')
+    })
 });
