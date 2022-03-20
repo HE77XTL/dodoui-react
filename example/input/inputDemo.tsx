@@ -4,12 +4,14 @@ import InputExample from "./inputExample";
 import InputExampleDisable from "./inputExampleDisable";
 import InputExampleClear from "./inputExampleClear";
 import InputExamplePassword from "./inputExamplePassword";
+import InputExampleNumber from "./inputExampleNumber";
 import {scopedClassMaker} from "../../lib/helpers/classes";
 
 const code = require("!!raw-loader!./inputExample");
 const codeDisable = require("!!raw-loader!./inputExampleDisable");
 const codeClear = require("!!raw-loader!./inputExampleClear");
 const codePassword = require("!!raw-loader!./inputExamplePassword");
+const codeNumber = require("!!raw-loader!./inputExampleNumber");
 const sc = scopedClassMaker("doc");
 const InputDemo: React.FunctionComponent = () => {
     return (
@@ -41,8 +43,11 @@ const InputDemo: React.FunctionComponent = () => {
                             <InputExamplePassword/>
                         </Demo>
                     </div>
-
-
+                    <div className={sc("exampleItem")}>
+                        <Demo code={codeNumber.default}>
+                            <InputExampleNumber/>
+                        </Demo>
+                    </div>
                 </div>
                 <div className={sc('demoAttributes.tsx')}>
                     Attributes
