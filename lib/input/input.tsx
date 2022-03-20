@@ -4,7 +4,7 @@ import classes, {scopedClassMaker} from "../helpers/classes";
 import './input.less';
 import {isEmpty} from "../helpers/utils";
 import {getInitValue, InputValueType} from "../helpers/formUtils";
-import {isNumber} from "../helpers/regExpUtils";
+import {isNumberInput} from "../helpers/regExpUtils";
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {
     value?: InputValueType,
@@ -40,7 +40,7 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
     }
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-        if (props.type === 'number' && !isNumber(e.target.value)) {
+        if (props.type === 'number' && !isNumberInput(e.target.value)) {
             return;
         }
         if (props.value === undefined || props.value === null) {

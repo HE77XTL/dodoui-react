@@ -4,7 +4,7 @@ const regExpMap = {
 
 };
 
-function isNumber(value: string) {
+function isNumberInput(value: string) {
     return regExpMap.number.test(value);
 }
 
@@ -19,6 +19,6 @@ function isNumber(value: string) {
 
 
 export {
-    isNumber,
+    isNumberInput,
     regExpMap,
 };
