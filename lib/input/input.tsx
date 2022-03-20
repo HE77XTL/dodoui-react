@@ -2,9 +2,9 @@ import React, {InputHTMLAttributes, useEffect, useRef, useState} from "react";
 import Icon from '../../lib/icon/icon';
 import classes, {scopedClassMaker} from "../helpers/classes";
 import './input.less';
-
 import {isEmpty} from "../helpers/utils";
 import {getInitValue, InputValueType} from "../helpers/formUtils";
+import {isNumber} from "../helpers/regExpUtils";
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value' | 'defaultValue'> {
     value?: InputValueType,
@@ -16,10 +16,7 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'on
 
 const DoInput: React.FunctionComponent<Props> = (props) => {
     const {value, defaultValue, className, ...rest} = props;
-
     const [vdValue, setVdValue] = useState(getInitValue({value, defaultValue}));
-
-    // 用于处理浏览器自带的一些好用的type
     const [inputType, setInputType] = useState(props.type || 'text');
     const [passwordIcon, setPasswordIcon] = useState(props.type === 'password' ? 'hide' : 'show');
     const [clearIconVisible, setClearIconVisible] = useState(getInitIconVisible());
@@ -43,6 +40,9 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
     }
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        if (props.type === 'number' && !isNumber(e.target.value)) {
+            return;
+        }
         if (props.value === undefined || props.value === null) {
             setVdValue(e.target.value);
         }
