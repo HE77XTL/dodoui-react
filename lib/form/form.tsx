@@ -9,7 +9,7 @@ const sc = scopedClassMaker("dodo-form");
 
 
 interface FormFieldDefaultRender {
-    type: 'text' | 'textarea' | 'number' | 'password';
+    type: 'text' | 'number' | 'password';
 }
 
 export interface FormField {
@@ -53,14 +53,15 @@ interface Props {
 const Form: React.FunctionComponent<Props> = (props) => {
 
     const {fields, labelPosition} = props;
-    const onInputChange = (name: string, e: any) => {
-        props.onChange({...props.value, [name]: e.target.value});
+    const onInputChange = (name: string, value: any) => {
+        props.onChange({...props.value, [name]: value});
     };
     const renderInput = (field: FormField) =>
         <div className={sc('input-wrapper')} key={field.name}>
             {field.input instanceof Function ?
                 field.input() :
                 <DoInput value={props.value[field.name]}
+                         type={field.input.type}
                          onChange={onInputChange.bind(null, field.name)}/>}
         </div>;
 

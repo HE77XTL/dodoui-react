@@ -8,7 +8,6 @@ const FormExample = () => {
         name: 'heds',
         age: 18,
         password: 'xxxxx',
-        city: ''
     });
 
     const [fields] = useState<FormField[]>([
@@ -34,17 +33,19 @@ const FormExample = () => {
             maxLength: 8
         },
         {
-            key: 'phone',
-            message: "太短",
-            minLength: 3
+            key: 'age',
+            required: true,
+            message: "必填"
         },
         {
-            key: 'city',
+            key: 'password',
             message: "必填",
             required: true,
         }
     ];
     const onChange = (value: FormValue) => {
+        console.log('formChagne')
+        console.log(value)
         setFormData(value);
 
     };
