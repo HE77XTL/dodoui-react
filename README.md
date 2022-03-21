@@ -14,11 +14,8 @@ yarn add hedongsheng-ui-react
 
 
 ## 项目说明
-### React&&TypeScript&&webpack学习-造轮子，及框架搭建
+### React && TypeScript && webpack -- 造轮子
 
-前端作为一个与设计紧密结合的职业，需要足够的面向设计开发理念。
-尤其对于to C 的外部产品，产品的体验和品质尤为重要。
-但随着团队规模的扩大，工程化愈发显得重要。因此，开了这个项目，目的主要是对React 框架的进一步学习以及工程化能力的进一步提高。
 
 ### 搭建流程
 #### 1、技术栈选择
@@ -50,7 +47,9 @@ css 和文件（如图片，svg文件等）等静态资源，mock [配置参考]
 具体参考配置文件，npm 设置里生成Auth Tokens，在CircleCI 中添加环境变量NPM_TOKEN，便可拿到权限自动发布 
 
 
-// todo
+#### todo list
 
-dialog 优化 -> Portals ( 挂在到 root 之外， 保持 react 的事件机制)；
+1、dialog 优化 -> Portals ( 挂在到 root 之外， 保持 react 的事件机制)；
 直接js 挂到 body 上 ， 事件 就不走 react 的合成事件
+
+2、对全局的尺寸做规划（font-size padding margin 等）

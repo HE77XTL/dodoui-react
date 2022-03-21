@@ -1,0 +1,19 @@
+@import "../index.less";
+.dodo-textarea-wrap {
+    display: inline-block;
+    position: relative;
+    .dodo-textarea {
+        box-sizing: border-box;
+        border: 1px solid @gray-4;
+        border-radius: @radius-xs;
+        &:hover {
+            border-color: @blue;
+        }
+        &:focus {
+            outline: none;
+            border-color: @blue;
+            box-shadow: 0 0 2px 0 lighten(@blue,10%);
+        }
+    }
+
+}

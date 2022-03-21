@@ -3,7 +3,7 @@ import {Textarea} from "../../lib";
 
 
 const TextareaExample = ()=> {
-    return <div>
+    return <div style={{fontSize: '32px'}}>
         <Textarea/>
     </div>
 };
