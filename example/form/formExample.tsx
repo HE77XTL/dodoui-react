@@ -14,8 +14,8 @@ const FormExample = () => {
         {name: 'name', label: '用户名', input: {type: 'text'}},
         {name: 'age', label: '年龄', input: {type: 'number'}},
         {name: 'password', label: '密码', input: {type: 'password'}},
+        {name: 'profile', label: '简介', input: {type: 'textarea'}},
     ]);
-
 
 
     const [errors, setErrors] = useState<FormErrors>({});
@@ -44,8 +44,8 @@ const FormExample = () => {
         }
     ];
     const onChange = (value: FormValue) => {
-        console.log('formChagne')
-        console.log(value)
+        console.log('formChagne');
+        console.log(value);
         setFormData(value);
 
     };
@@ -53,8 +53,8 @@ const FormExample = () => {
         console.log(formData);
         const errors = Validator(formData, rules);
         console.log('errors');
-        console.log(errors)
-        setErrors(errors)
+        console.log(errors);
+        setErrors(errors);
     };
     return (
         <div>

@@ -46,10 +46,3 @@ css 和文件（如图片，svg文件等）等静态资源，mock [配置参考]
 #### 5、CircleCI配置
 具体参考配置文件，npm 设置里生成Auth Tokens，在CircleCI 中添加环境变量NPM_TOKEN，便可拿到权限自动发布 
 
-
-#### todo list
-
-1、dialog 优化 -> Portals ( 挂在到 root 之外， 保持 react 的事件机制)；
-直接js 挂到 body 上 ， 事件 就不走 react 的合成事件
-
-2、对全局的尺寸做规划（font-size padding margin 等）
