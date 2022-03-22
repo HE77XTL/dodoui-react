@@ -36,13 +36,17 @@ const DoTextarea: React.FunctionComponent<Props> = (props) => {
         <textarea
             value={vdValue}
             className={sc('textarea')}
-            cols={30} rows={10}
             onChange={onTextareaChange}
             {...rest}
         >
         {vdValue}
     </textarea>
     </div>;
+};
+
+DoTextarea.defaultProps = {
+    cols: 30,
+    rows: 10,
 };
 
 export default DoTextarea;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 import './form.less';
 import DoInput from "../input/input";
+import {Textarea} from "../../lib/index";
 import classes, {scopedClassMaker} from "../helpers/classes";
 import {isEmpty} from "../helpers/utils";
 
@@ -9,7 +10,7 @@ const sc = scopedClassMaker("dodo-form");
 
 
 interface FormFieldDefaultRender {
-    type: 'text' | 'number' | 'password';
+    type: 'text' | 'number' | 'password' | 'textarea';
 }
 
 export interface FormField {
@@ -39,7 +40,7 @@ export type FormRules = Array<FormRule>
 
 interface Props {
     layout?: 'vertical' | 'horizontal';
-    labelPosition?:  'left' | 'right' | 'center' | 'justify',
+    labelPosition?: 'left' | 'right' | 'center' | 'justify',
     labelWidth?: string,
     value: FormValue;
     fields: FormField[];
@@ -56,14 +57,39 @@ const Form: React.FunctionComponent<Props> = (props) => {
     const onInputChange = (name: string, value: any) => {
         props.onChange({...props.value, [name]: value});
     };
-    const renderInput = (field: FormField) =>
-        <div className={sc('input-wrapper')} key={field.name}>
-            {field.input instanceof Function ?
-                field.input() :
-                <DoInput value={props.value[field.name]}
-                         type={field.input.type}
-                         onChange={onInputChange.bind(null, field.name)}/>}
-        </div>;
+
+    const getFormItem = (field: FormField) => {
+        if (field.input instanceof Function) {
+            return field.input();
+        } else {
+            switch (field.input.type) {
+                case "text":
+                case "number":
+                case "password":
+                    return <DoInput
+                        value={props.value[field.name]}
+                        type={field.input.type}
+                        onChange={(value) => {
+                            onInputChange(field.name, value);
+                        }}/>;
+                case "textarea":
+                    return <Textarea
+                        value={props.value[field.name]} onChange={(value) => {
+                        onInputChange(field.name, value);
+                    }}/>;
+                default:
+                    return <DoInput
+                        value={props.value[field.name]}
+                        type={field.input.type}
+                        onChange={(value) => {
+                            onInputChange(field.name, value);
+                        }}/>;
+            }
+
+        }
+
+    };
+
 
     const labelStyle = () => {
         const widthStyle = props.labelWidth ? {
@@ -71,28 +97,27 @@ const Form: React.FunctionComponent<Props> = (props) => {
         } : {};
         return {
             ...widthStyle
-        }
+        };
     };
 
     const getErrorText = (key: string) => {
         if (props.errors && props.errors[key]) {
-            return props.errors[key][0]
+            return props.errors[key][0];
         } else {
-            return ""
+            return "";
         }
     };
     const isError = (key: string) => {
-        return props.errors && !isEmpty(props.errors[key])
+        return props.errors && !isEmpty(props.errors[key]);
     };
     const isRule = (key: string): boolean => {
         if (props.rules) {
             return !!props.rules.find((rule) => {
-                return rule.key === key
-            })
+                return rule.key === key;
+            });
         } else {
-            return false
+            return false;
         }
-
     };
 
     const horizontalLayout = (
@@ -114,13 +139,13 @@ const Form: React.FunctionComponent<Props> = (props) => {
                             {props.colon ? <div className={sc('colon')}>:</div> : null}
                         </div>
                         <div className={sc('item')}>
-                            <div>{renderInput(f)}</div>
+                            <div>{getFormItem(f)}</div>
                             {isError(f.name)
                                 ? <div className={sc('error')}>{getErrorText(f.name)}</div>
                                 : null}
                         </div>
                     </div>
-                )
+                );
             })}
         </div>
     );
@@ -138,13 +163,13 @@ const Form: React.FunctionComponent<Props> = (props) => {
                             {props.colon ? <div className={sc('colon')}>:</div> : null}
                         </div>
                         <div className={sc('item')}>
-                            <div>{renderInput(f)}</div>
+                            <div>{getFormItem(f)}</div>
                             {isError(f.name)
                                 ? <div className={sc('error')}>{getErrorText(f.name)}</div>
                                 : null}
                         </div>
                     </div>
-                )
+                );
             })}
         </div>
     );
