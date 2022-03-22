@@ -46,7 +46,7 @@ const DoTextarea: React.FunctionComponent<Props> = (props) => {
 
 DoTextarea.defaultProps = {
     cols: 30,
-    rows: 10,
+    rows: 6,
 };
 
 export default DoTextarea;

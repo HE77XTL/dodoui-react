@@ -69,7 +69,7 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
                 value={vdValue}
                 type={inputType}
                 ref={refInput}
-                className={classes(sc("input"), className, clearableClass)}
+                className={classes(sc("input"), className, clearableClass, props.type === 'password' ? sc('password-input') : '')}
                 onChange={onInputChange}
             />
             {clearIconVisible
