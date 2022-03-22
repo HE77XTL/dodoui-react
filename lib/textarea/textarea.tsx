@@ -1,32 +1,48 @@
-import React, {TextareaHTMLAttributes, useState} from "react";
+import React, {TextareaHTMLAttributes, useEffect, useState} from "react";
 import {getInitValue, InputValueType} from "../helpers/formUtils";
 
-import './textarea.less'
+import './textarea.less';
 import {scopedClassMaker} from "../helpers/classes";
 
 
-
-interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
+interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'> {
     value?: InputValueType,
     defaultValue?: InputValueType,
-
+    onChange?: (data: InputValueType) => void,
 }
 
 const DoTextarea: React.FunctionComponent<Props> = (props) => {
+
     const sc = scopedClassMaker("dodo");
-    const {value, defaultValue} = props;
+    const {value, defaultValue, onChange, ...rest} = props;
     const [vdValue, setVdValue] = useState(getInitValue({value, defaultValue}));
 
+    useEffect(() => {
+        if (props.value === undefined || props.value === null) {
+            return;
+        } else {
+            setVdValue(props.value);
+        }
+    }, [props.value]);
+
     function onTextareaChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-        console.log('onTextareaChange');
-        console.log(e);
+        if (props.value === undefined || props.value === null) {
+            setVdValue(e.target.value);
+        }
+        onChange && onChange(e.target.value);
     }
 
     return <div className={sc('textarea-wrap')}>
-        <textarea className={sc('textarea')} cols={30} rows={10} onChange={onTextareaChange}>
+        <textarea
+            value={vdValue}
+            className={sc('textarea')}
+            cols={30} rows={10}
+            onChange={onTextareaChange}
+            {...rest}
+        >
         {vdValue}
     </textarea>
-    </div>
+    </div>;
 };
 
 export default DoTextarea;

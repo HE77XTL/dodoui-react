@@ -4,7 +4,7 @@ import {Textarea} from "../../lib";
 
 const TextareaExample = ()=> {
     return <div style={{fontSize: '32px'}}>
-        <Textarea/>
+        <Textarea style={{width: '500px'}}/>
     </div>
 };
 
