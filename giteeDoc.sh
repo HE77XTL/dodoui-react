@@ -1,4 +1,4 @@
 #!/bin/env bash
 yarn doc && \
-cp -r doc/. ../dodoui-react-doc && \
+cp -r doc/. ../dodoui-react-doc
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 
 const ExampleAside = () => {
@@ -7,7 +7,7 @@ const ExampleAside = () => {
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
-        }
+        };
     }, []);
 
     function handleScroll() {
@@ -19,7 +19,7 @@ const ExampleAside = () => {
     function asideStyle() {
         return {
             top: scrollTop + 'px'
-        }
+        };
     }
 
 
@@ -47,6 +47,9 @@ const ExampleAside = () => {
                 <NavLink to="/select" className='menuItem' activeClassName='active'>select 选择器</NavLink>
             </dd>
             <dd>
+                <NavLink to="/textarea" className='menuItem' activeClassName='active'>textarea 输入框</NavLink>
+            </dd>
+            <dd>
                 <NavLink to="/form" className='menuItem' activeClassName='active'>form 表单</NavLink>
             </dd>
             <dt className='menuItem'>
@@ -56,7 +59,7 @@ const ExampleAside = () => {
                 <NavLink to="/scaleImage" className='menuItem' activeClassName='active'>image等比变宽图片</NavLink>
             </dd>
         </dl>
-    </aside>)
-}
+    </aside>);
+};
 
-export default ExampleAside
+export default ExampleAside;

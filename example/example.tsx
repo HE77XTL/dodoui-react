@@ -15,6 +15,7 @@ import FormDemo from "./form/formDemo";
 import ExampleAside from './exampleAside'
 import ScaleImageDemo from './scaleImage/scaleImageDemo'
 import SelectDemo from './select/selectDemo'
+import TextareaDemo from './textarea/textareaDemo'
 
 const logo = require("./common/avatar.jpg").default;
 
@@ -45,6 +46,7 @@ ReactDOM.render(
                 <Route path="/form" component={FormDemo}/>
                 <Route path="/scaleImage" component={ScaleImageDemo}/>
                 <Route path="/select" component={SelectDemo}/>
+                <Route path="/textarea" component={TextareaDemo}/>
             </main>
             {/*<footer className='dodo-footer'>*/}
             {/*    DoDo UI*/}
