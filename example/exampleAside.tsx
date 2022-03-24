@@ -58,6 +58,10 @@ const ExampleAside = () => {
             <dd>
                 <NavLink to="/scaleImage" className='menuItem' activeClassName='active'>image等比变宽图片</NavLink>
             </dd>
+            <dd>
+                <NavLink to="/regionSelectDemo" className='menuItem' activeClassName='active'>省市区选择</NavLink>
+            </dd>
+
         </dl>
     </aside>);
 };

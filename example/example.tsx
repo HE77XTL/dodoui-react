@@ -12,10 +12,11 @@ import LayoutDemo from "./layout/layoutDemo";
 import ButtonDemo from "./button/buttonDemo";
 import InputDemo from "./input/inputDemo";
 import FormDemo from "./form/formDemo";
-import ExampleAside from './exampleAside'
-import ScaleImageDemo from './scaleImage/scaleImageDemo'
-import SelectDemo from './select/selectDemo'
-import TextareaDemo from './textarea/textareaDemo'
+import ExampleAside from './exampleAside';
+import ScaleImageDemo from './scaleImage/scaleImageDemo';
+import SelectDemo from './select/selectDemo';
+import TextareaDemo from './textarea/textareaDemo';
+import RegionSelectDemo from './regionSelect/regionSelectDemo';
 
 const logo = require("./common/avatar.jpg").default;
 
@@ -47,6 +48,7 @@ ReactDOM.render(
                 <Route path="/scaleImage" component={ScaleImageDemo}/>
                 <Route path="/select" component={SelectDemo}/>
                 <Route path="/textarea" component={TextareaDemo}/>
+                <Route path="/regionSelectDemo" component={RegionSelectDemo}/>
             </main>
             {/*<footer className='dodo-footer'>*/}
             {/*    DoDo UI*/}

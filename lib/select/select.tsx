@@ -15,14 +15,14 @@ interface Props {
     className?: string;
     disabled?: boolean;
     filterable?: boolean;
-    options: OptionInterface;
-    onChange: (data: SelectValueType) => void
+    options?: OptionInterface;
+    onChange?: (data: SelectValueType) => void
 }
 
 const sc = scopedClassMaker("dodo");
 const DoSelect: React.FunctionComponent<Props> = (props) => {
 
-    const {value, defaultValue, filterable, options, className, onChange} = props;
+    const {value, defaultValue, filterable, options = [], className, onChange} = props;
 
     const [vdInputValue, setVdInputValue] = useState<SelectValueType>(getLabelFromOptions(getInitValue({
         value,
@@ -44,6 +44,9 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
 
     function getInputValue(value: valueType) {
         if (isEmpty(value)) {
+            return '';
+        }
+        if (!props.options) {
             return '';
         }
         const selectItem = props.options.find((k) => {
