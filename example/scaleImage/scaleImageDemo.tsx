@@ -2,10 +2,27 @@ import * as React from "react";
 import Demo from "../common/demo";
 import ScaleImageExample from "./scaleImageExample";
 import {scopedClassMaker} from "../../lib/helpers/classes";
+import DemoAttributes from "../common/demoAttributes";
 
 const code = require("!!raw-loader!./scaleImageExample");
 const sc = scopedClassMaker("doc");
 const InputDemo: React.FunctionComponent = () => {
+    const attributes = [
+        {
+            param: "imgUrl",
+            explanation: "图标地址",
+            type: "string",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "scale",
+            explanation: "宽高比",
+            type: "number",
+            optional: "-",
+            default: "-",
+        },
+    ];
     return (
         <div className={sc("example")}>
             <header className={sc("header")}>
@@ -21,9 +38,7 @@ const InputDemo: React.FunctionComponent = () => {
                         </Demo>
                     </div>
                 </div>
-                <div className={sc('demoAttributes.tsx')}>
-                    Attributes
-                </div>
+                <DemoAttributes attributes={attributes}/>
             </main>
         </div>
     );

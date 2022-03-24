@@ -33,10 +33,6 @@ const IconDemo: React.FunctionComponent = () => {
                 </div>
                 <DemoAttributes attributes={attributes}/>
             </main>
-            <div className={sc("componentNote")}>
-                <h3>tips</h3>
-                <p>生产实践中，如无多色图标需求，iconfont 字体图标更加方便快捷，具体请根据项目需求进行处理</p>
-            </div>
         </div>
     );
 };

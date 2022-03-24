@@ -7,7 +7,7 @@ function IconExample() {
             <Icon name='qq'/>
             <Icon name='wechat'/>
             <Icon name='alipay'/>
-            <Icon name='dingtalk'/>
+            <Icon style={{fontSize: '24px'}} name='dingtalk'/>
         </div>
     );
 }

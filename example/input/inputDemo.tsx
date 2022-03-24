@@ -6,6 +6,7 @@ import InputExampleClear from "./inputExampleClear";
 import InputExamplePassword from "./inputExamplePassword";
 import InputExampleNumber from "./inputExampleNumber";
 import {scopedClassMaker} from "../../lib/helpers/classes";
+import DemoAttributes from "../common/demoAttributes";
 
 const code = require("!!raw-loader!./inputExample");
 const codeDisable = require("!!raw-loader!./inputExampleDisable");
@@ -14,6 +15,45 @@ const codePassword = require("!!raw-loader!./inputExamplePassword");
 const codeNumber = require("!!raw-loader!./inputExampleNumber");
 const sc = scopedClassMaker("doc");
 const InputDemo: React.FunctionComponent = () => {
+    const attributes = [
+        {
+            param: "value",
+            explanation: "输入框内容",
+            type: "string | number",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "defaultValue",
+            explanation: "输入框默认内容",
+            type: "string | number",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "type",
+            explanation: "声明 input 类型",
+            type: "string",
+            optional: "text | password | number",
+            default: "-",
+        },
+        {
+            param: "onChange",
+            explanation: "输入框内容变化时的回调",
+            type: "function(value)",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "clearable",
+            explanation: "可以点击清除图标删除内容",
+            type: "boolean",
+            optional: "-",
+            default: "-",
+        }
+
+
+    ];
     return (
         <div className={sc("example")}>
             <header className={sc("header")}>
@@ -49,9 +89,7 @@ const InputDemo: React.FunctionComponent = () => {
                         </Demo>
                     </div>
                 </div>
-                <div className={sc('demoAttributes.tsx')}>
-                    Attributes
-                </div>
+                <DemoAttributes attributes={attributes}/>
             </main>
         </div>
     );

@@ -2,10 +2,35 @@ import * as React from "react";
 import Demo from "../common/demo";
 import SelectExample from "./selectExample";
 import {scopedClassMaker} from "../../lib/helpers/classes";
+import DemoAttributes from "../common/demoAttributes";
 
 const code = require("!!raw-loader!./selectExample");
 const sc = scopedClassMaker("doc");
 const SelectDemo: React.FunctionComponent = () => {
+    const attributes = [
+        {
+            param: "value",
+            explanation: "输入框内容",
+            type: "string | number",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "defaultValue",
+            explanation: "输入框默认内容",
+            type: "string | number",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "placeHolder",
+            explanation: "占位符",
+            type: "string",
+            optional: "-",
+            default: "请选择",
+
+        }
+    ];
     return (
         <div className={sc("example")}>
             <header className={sc("header")}>
@@ -21,9 +46,7 @@ const SelectDemo: React.FunctionComponent = () => {
                         </Demo>
                     </div>
                 </div>
-                <div className={sc('demoAttributes.tsx')}>
-                    Attributes
-                </div>
+                <DemoAttributes attributes={attributes}/>
             </main>
         </div>
     );

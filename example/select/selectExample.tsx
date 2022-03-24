@@ -1,6 +1,6 @@
 import * as React from "react";
 // import {Select, Button} from 'hedongsheng-ui-react'
-import {Select, Button} from '../../lib';
+import {Select} from '../../lib';
 import './selectExample.less';
 import {scopedClassMaker} from "../../lib/helpers/classes";
 import {useState} from "react";
@@ -39,9 +39,6 @@ const SelectExample = () => {
                 options={options}
                 className={sc('select')}
                 onChange={onChange}/>
-            <Button size='small' className={sc('change-select-btn')} onClick={() => {
-                setValue('orange');
-            }}>change value to orange</Button>
         </div>
     );
 };

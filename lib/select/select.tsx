@@ -122,7 +122,8 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
 };
 
 DoSelect.defaultProps = {
-    filterable: false
+    filterable: false,
+    placeHolder: '请选择'
 };
 
 export default DoSelect;
