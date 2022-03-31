@@ -1,0 +1,19 @@
+@import "../index.less";
+.dodo-regionSelect {
+    min-width: 490px;
+    .dodo-regionSelectItem {
+        &:not(:last-of-type) {
+            margin-right: @padding-md;
+        }
+    }
+    &.dodo-vertical {
+        min-width: 160px;
+        .dodo-regionSelectItem {
+            margin-right: 0;
+            display: block;
+            &:not(:last-of-type) {
+                margin-bottom: @padding-sm;
+            }
+        }
+    }
+}

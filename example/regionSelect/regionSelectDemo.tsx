@@ -11,7 +11,7 @@ const RegionSelectDemo: React.FunctionComponent = () => {
     return <div className={sc("example")}>
         <header className={sc("header")}>
             <h2 className={sc("title")}>省市区联动选择</h2>
-            <p>---</p>
+            <p>常用于地区选择，最多支持省、市、区三级</p>
         </header>
         <main>
             <div className={sc("use")}>

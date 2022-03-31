@@ -17,6 +17,7 @@ interface Props {
     filterable?: boolean;
     options?: OptionInterface;
     onChange?: (data: SelectValueType) => void
+    width?: string
 }
 
 const sc = scopedClassMaker("dodo");
@@ -84,8 +85,20 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
         setVdOptions(searchOptions);
     }
 
+    function componentStyle() {
+        interface Styles {
+            width?: string;
+        }
+
+        let styles: Styles = {};
+        if (props.width) {
+            styles.width = props.width;
+        }
+        return styles;
+    }
+
     return (
-        <div className={classes(className, sc('select'))}>
+        <div style={componentStyle()} className={classes(className, sc('select'))}>
             <Input
                 value={vdInputValue}
                 type="text"
