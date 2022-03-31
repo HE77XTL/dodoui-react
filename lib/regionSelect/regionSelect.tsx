@@ -15,6 +15,7 @@ export interface RegionInterface {
 
 interface Props extends Pick<HTMLAttributes<HTMLElement>, 'className'> {
     value?: RegionInterface,
+    defaultValue?: RegionInterface,
     onChange?: (data: RegionInterface) => void,
     layout?: 'vertical' | 'horizontal';
     level?: number
@@ -22,7 +23,7 @@ interface Props extends Pick<HTMLAttributes<HTMLElement>, 'className'> {
 
 
 const RegionSelect: React.FunctionComponent<Props> = (props) => {
-    const {value = {}, onChange, level = 3, ...rest} = props;
+    const {value, defaultValue, onChange, level = 3, ...rest} = props;
     const SelectWidth = '150px';
     const {className} = props;
     const sc = scopedClassMaker("dodo");
@@ -32,12 +33,13 @@ const RegionSelect: React.FunctionComponent<Props> = (props) => {
             label: k.name,
         };
     });
+    const initValue = getInitValue(props);
 
-    const [provinceId, setProvinceId] = useState<SelectValueType>(value.provinceId);
-    const [cityId, setCityId] = useState<SelectValueType>(value.cityId);
-    const [areaId, setAreaId] = useState<SelectValueType>(value.areaId);
-    const [cityOptions, setCityOptions] = useState(getSelectOptions('city', value.provinceId || ''));
-    const [areaOptions, setAreaOptions] = useState(getSelectOptions('area', value.cityId || ''));
+    const [provinceId, setProvinceId] = useState<SelectValueType>(initValue.provinceId);
+    const [cityId, setCityId] = useState<SelectValueType>(initValue.cityId);
+    const [areaId, setAreaId] = useState<SelectValueType>(initValue.areaId);
+    const [cityOptions, setCityOptions] = useState(getSelectOptions('city', initValue.provinceId || ''));
+    const [areaOptions, setAreaOptions] = useState(getSelectOptions('area', initValue.cityId || ''));
 
 
     useEffect(() => {
@@ -45,7 +47,7 @@ const RegionSelect: React.FunctionComponent<Props> = (props) => {
             return;
         }
         if (props.value.provinceId) {
-            setProvinceId(value.provinceId);
+            setProvinceId(props.value.provinceId);
             setCityOptions(getSelectOptions('city', props.value.provinceId));
             setAreaOptions([]);
             setCityId('');
@@ -60,6 +62,15 @@ const RegionSelect: React.FunctionComponent<Props> = (props) => {
             setAreaId(props.value.areaId);
         }
     }, [props.value]);
+
+    function getInitValue(props: Props) {
+        if (props.value === undefined || props.value === null) {
+            return props.defaultValue || {};
+        } else {
+            return props.value;
+        }
+    }
+
 
     const vChange = (data: RegionInterface) => {
         onChange && onChange(data);
@@ -135,4 +146,3 @@ RegionSelect.defaultProps = {
 };
 
 export default RegionSelect;
-;

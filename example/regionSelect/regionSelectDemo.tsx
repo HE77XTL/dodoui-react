@@ -2,12 +2,28 @@ import * as React from "react";
 import {scopedClassMaker} from "../../lib/helpers/classes";
 import Demo from "../common/demo";
 import RegionSelectExample from "./regionSelectExample";
-// import DemoAttributes from "../common/demoAttributes";
+import DemoAttributes from "../common/demoAttributes";
 
 const code = require("!!raw-loader!./regionSelectExample");
 const RegionSelectDemo: React.FunctionComponent = () => {
     const sc = scopedClassMaker("doc");
-    // const attributes = [{}];
+
+    const attributes = [
+        {
+            param: "value",
+            explanation: "省市区编码",
+            type: "object",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "onChange",
+            explanation: "选中时调用",
+            type: "function(value)",
+            optional: "-",
+            default: "-",
+        }
+    ];
     return <div className={sc("example")}>
         <header className={sc("header")}>
             <h2 className={sc("title")}>省市区联动选择</h2>
@@ -22,7 +38,7 @@ const RegionSelectDemo: React.FunctionComponent = () => {
                     </Demo>
                 </div>
             </div>
-            {/*<DemoAttributes attributes={attributes}/>*/}
+            <DemoAttributes attributes={attributes}/>
         </main>
     </div>;
 };

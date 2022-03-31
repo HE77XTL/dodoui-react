@@ -2,11 +2,36 @@ import * as React from "react";
 import Demo from "../common/demo";
 import TextareaExample from "./textareaExample";
 import {scopedClassMaker} from "../../lib/helpers/classes";
+import DemoAttributes from "../common/demoAttributes";
 
 const code = require("!!raw-loader!./textareaExample");
 
-const TextareaDemo: React.FunctionComponent = ()=> {
+const TextareaDemo: React.FunctionComponent = () => {
     const sc = scopedClassMaker("doc");
+    const attributes = [
+        {
+            param: "value",
+            explanation: "输入框内容",
+            type: "string | number",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "defaultValue",
+            explanation: "输入框默认内容",
+            type: "string | number",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "onChange",
+            explanation: "输入框内容变化时的回调",
+            type: "function(value)",
+            optional: "-",
+            default: "-",
+        }
+
+    ];
     return <div className={sc("example")}>
         <header className={sc("header")}>
             <h2 className={sc("title")}>Textarea 输入框</h2>
@@ -21,11 +46,9 @@ const TextareaDemo: React.FunctionComponent = ()=> {
                     </Demo>
                 </div>
             </div>
-            <div className={sc('demoAttributes.tsx')}>
-                Attributes
-            </div>
+            <DemoAttributes attributes={attributes}/>
         </main>
-    </div>
+    </div>;
 };
 
-export default TextareaDemo
+export default TextareaDemo;
