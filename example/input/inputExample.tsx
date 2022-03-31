@@ -16,8 +16,6 @@ const InputExample = () => {
                     setValue(value);
                 }}
                 placeholder='请输入'/>
-
-
         </div>
     );
 };

@@ -11,11 +11,12 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'on
     defaultValue?: InputValueType,
     type?: 'text' | 'password' | 'number',
     onChange?: (data: InputValueType) => void,
+    onClear?: () => void,
     clearable?: boolean,
 }
 
 const DoInput: React.FunctionComponent<Props> = (props) => {
-    const {value, defaultValue, className, ...rest} = props;
+    const {value, defaultValue, className, clearable, onClear, ...rest} = props;
     const [vdValue, setVdValue] = useState(getInitValue({value, defaultValue}));
     const [inputType, setInputType] = useState(props.type || 'text');
     const [passwordIcon, setPasswordIcon] = useState(props.type === 'password' ? 'hide' : 'show');
@@ -29,13 +30,15 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
             return;
         } else {
             setVdValue(props.value);
+            setClearIconVisible(props.clearable && !isEmpty(props.value));
         }
     }, [props.value]);
 
 
-    function onClear() {
+    function onInputClear() {
         setVdValue('');
         props.onChange && props.onChange("");
+        props.onClear && props.onClear();
         setClearIconVisible(false);
     }
 
@@ -74,7 +77,7 @@ const DoInput: React.FunctionComponent<Props> = (props) => {
             />
             {clearIconVisible
                 ? <Icon name="clear"
-                        onClick={onClear}
+                        onClick={onInputClear}
                         className={classes(sc("input-icon"), props.type === 'password' ? sc('password-clear-icon') : '')}/>
                 : null}
             {props.type === 'password' ?

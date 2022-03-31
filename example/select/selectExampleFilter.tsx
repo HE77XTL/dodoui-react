@@ -3,10 +3,13 @@ import * as React from "react";
 import {Select} from '../../lib';
 import './selectExample.less';
 import {scopedClassMaker} from "../../lib/helpers/classes";
+import {useState} from "react";
+
 
 const sc = scopedClassMaker("doc");
-const SelectExample = () => {
+const SelectExampleFilter = () => {
     const defaultValue = 'apple';
+    const [value, setValue] = useState<string | number>();
     const options = [
         {
             label: '苹果',
@@ -21,15 +24,24 @@ const SelectExample = () => {
             value: 'orange'
         },
     ];
+
+    function onChange(data: string | number) {
+        setValue(data);
+    }
+
+
     return (
         <div className={sc('select-example')}>
             <div className={'doc-tip'}>基本用法</div>
             <Select
                 defaultValue={defaultValue}
+                value={value}
+                filterable={true}
                 options={options}
-                className={sc('select')}/>
+                className={sc('select')}
+                onChange={onChange}/>
         </div>
     );
 };
 
-export default SelectExample;
+export default SelectExampleFilter;

@@ -50,7 +50,16 @@ const InputDemo: React.FunctionComponent = () => {
             type: "boolean",
             optional: "-",
             default: "-",
+        },
+        {
+            param: "onClear",
+            explanation: "点击清楚图标时的回调",
+            type: "function",
+            optional: "-",
+            default: "-",
         }
+
+
 
 
     ];

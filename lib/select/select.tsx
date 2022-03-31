@@ -11,25 +11,26 @@ type valueType = string | number | undefined;
 interface Props {
     defaultValue?: SelectValueType;
     value?: SelectValueType;
-    placeHolder?: SelectValueType;
+    placeHolder?: string | undefined;
     className?: string;
     disabled?: boolean;
     filterable?: boolean;
     options?: OptionInterface;
     onChange?: (data: SelectValueType) => void
     width?: string
+    clearable?: boolean
 }
 
 const sc = scopedClassMaker("dodo");
 const DoSelect: React.FunctionComponent<Props> = (props) => {
 
-    const {value, defaultValue, filterable, options = [], className, onChange} = props;
+    const {value, defaultValue, placeHolder, filterable, options = [], className, onChange, clearable = false} = props;
 
     const [vdInputValue, setVdInputValue] = useState<SelectValueType>(getLabelFromOptions(getInitValue({
         value,
         defaultValue
     }), options));
-    const [vdPlaceholder, setVdPlaceholder] = useState<string | undefined>();
+    const [vdPlaceholder, setVdPlaceholder] = useState<string | undefined>(placeHolder);
     const [vdOptions, setVdOptions] = useState(options);
     const [optionVisible, setOptionVisible] = useState(false);
     const [currentValue, setCurrentValue] = useState<valueType>(getInitValue({value, defaultValue}));
@@ -77,6 +78,14 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
         searchFilter(value || '');
     }
 
+    function onClear() {
+        setCurrentValue('');
+        setVdPlaceholder(placeHolder);
+        setVdInputValue('');
+        searchFilter('');
+
+    }
+
 
     function searchFilter(inputValue: string | number) {
         const searchOptions = options.filter(k => {
@@ -104,6 +113,7 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
                 type="text"
                 disabled={props.disabled}
                 placeholder={vdPlaceholder}
+                clearable={clearable}
                 onFocus={() => {
                     setOptionVisible(true);
                     setVdInputValue("");
@@ -113,6 +123,7 @@ const DoSelect: React.FunctionComponent<Props> = (props) => {
                     setVdInputValue(getInputValue(currentValue));
                     setOptionVisible(false);
                 }}
+                onClear={onClear}
                 onChange={onInputChange}
                 readOnly={!filterable}/>
             <div className={classes(sc('options'), optionVisible ? sc('active') : '')}>

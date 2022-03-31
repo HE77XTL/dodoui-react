@@ -1,10 +1,12 @@
 import * as React from "react";
 import Demo from "../common/demo";
 import SelectExample from "./selectExample";
+import SelectExampleFilter from "./selectExampleFilter";
 import {scopedClassMaker} from "../../lib/helpers/classes";
 import DemoAttributes from "../common/demoAttributes";
 
 const code = require("!!raw-loader!./selectExample");
+const codeFilter = require("!!raw-loader!./selectExampleFilter");
 const sc = scopedClassMaker("doc");
 const SelectDemo: React.FunctionComponent = () => {
     const attributes = [
@@ -29,7 +31,22 @@ const SelectDemo: React.FunctionComponent = () => {
             optional: "-",
             default: "请选择",
 
-        }
+        },
+        {
+            param: "onChange",
+            explanation: "选中值发生变化时触发",
+            type: "function(value)",
+            optional: "-",
+            default: "-",
+        },
+        {
+            param: "clearable",
+            explanation: "是否可以清空选项",
+            type: "boolean",
+            optional: "-",
+            default: "false",
+        },
+
     ];
     return (
         <div className={sc("example")}>
@@ -43,6 +60,11 @@ const SelectDemo: React.FunctionComponent = () => {
                     <div className={sc("exampleItem")}>
                         <Demo code={code.default}>
                             <SelectExample />
+                        </Demo>
+                    </div>
+                    <div className={sc("exampleItem")}>
+                        <Demo code={codeFilter.default}>
+                            <SelectExampleFilter />
                         </Demo>
                     </div>
                 </div>
