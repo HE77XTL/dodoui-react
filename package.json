@@ -1,6 +1,6 @@
 {
   "name": "hedongsheng-ui-react",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "my ui for react",
   "main": "dist/lib/index.js",
   "files": [
@@ -19,7 +19,7 @@
     "url": "git+https://github.com/HE77XTL/dodoui-react.git"
   },
   "author": "heds",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/HE77XTL/dodoui-react/issues"
   },
