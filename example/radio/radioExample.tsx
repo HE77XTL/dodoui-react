@@ -3,7 +3,18 @@ import {Radio} from '../../lib/index';
 
 const RadioExample = () => {
     return <div>
-        <Radio value={1}/>
+        <Radio value={false}>
+            heds
+        </Radio>
+        <div>
+            <Radio name={'age'} options={[{
+                label: 'age-1',
+                value: 19
+            }, {
+                label: 'age-2',
+                value: 30
+            }]}/>
+        </div>
     </div>;
 };
 
