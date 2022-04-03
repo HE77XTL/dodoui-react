@@ -29,7 +29,15 @@ const TextareaDemo: React.FunctionComponent = () => {
             type: "function(value)",
             optional: "-",
             default: "-",
+        },
+        {
+            param: "rows",
+            explanation: "输入框行数",
+            type: "function(value)",
+            optional: "-",
+            default: "6",
         }
+
 
     ];
     return <div className={sc("example")}>

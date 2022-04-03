@@ -2,7 +2,7 @@ import React, {TextareaHTMLAttributes, useEffect, useState} from "react";
 import {getInitValue, InputValueType} from "../helpers/formUtils";
 
 import './textarea.less';
-import {scopedClassMaker} from "../helpers/classes";
+import classes, {scopedClassMaker} from "../helpers/classes";
 
 
 interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'> {
@@ -14,7 +14,7 @@ interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value
 const DoTextarea: React.FunctionComponent<Props> = (props) => {
 
     const sc = scopedClassMaker("dodo");
-    const {value, defaultValue, onChange, ...rest} = props;
+    const {value, defaultValue, onChange, className, ...rest} = props;
     const [vdValue, setVdValue] = useState(getInitValue({value, defaultValue}));
 
     useEffect(() => {
@@ -32,7 +32,8 @@ const DoTextarea: React.FunctionComponent<Props> = (props) => {
         onChange && onChange(e.target.value);
     }
 
-    return <div className={sc('textarea-wrap')}>
+
+    return <div className={classes(className, sc('textarea-wrap'))}>
         <textarea
             value={vdValue}
             className={sc('textarea')}
@@ -45,7 +46,7 @@ const DoTextarea: React.FunctionComponent<Props> = (props) => {
 };
 
 DoTextarea.defaultProps = {
-    cols: 30,
+    cols: 36,
     rows: 6,
 };
 

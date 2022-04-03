@@ -32,11 +32,12 @@ const SelectExampleFilter = () => {
 
     return (
         <div className={sc('select-example')}>
-            <div className={'doc-tip'}>基本用法</div>
+            <div className={'doc-tip'}>可搜索、清空</div>
             <Select
                 defaultValue={defaultValue}
                 value={value}
                 filterable={true}
+                clearable={true}
                 options={options}
                 className={sc('select')}
                 onChange={onChange}/>

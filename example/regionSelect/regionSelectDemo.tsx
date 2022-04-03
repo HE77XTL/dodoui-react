@@ -2,9 +2,11 @@ import * as React from "react";
 import {scopedClassMaker} from "../../lib/helpers/classes";
 import Demo from "../common/demo";
 import RegionSelectExample from "./regionSelectExample";
+import RegionSelectExampleLevel from "./regionSelectExampleLevel";
 import DemoAttributes from "../common/demoAttributes";
 
 const code = require("!!raw-loader!./regionSelectExample");
+const codeLevel = require("!!raw-loader!./regionSelectExampleLevel");
 const RegionSelectDemo: React.FunctionComponent = () => {
     const sc = scopedClassMaker("doc");
 
@@ -22,6 +24,13 @@ const RegionSelectDemo: React.FunctionComponent = () => {
             type: "function(value)",
             optional: "-",
             default: "-",
+        },
+        {
+            param: "level",
+            explanation: "省市区级数",
+            type: "number",
+            optional: "1 | 2 | 3",
+            default: "3",
         }
     ];
     return <div className={sc("example")}>
@@ -35,6 +44,11 @@ const RegionSelectDemo: React.FunctionComponent = () => {
                 <div className={sc("exampleItem")}>
                     <Demo code={code.default}>
                         <RegionSelectExample/>
+                    </Demo>
+                </div>
+                <div className={sc("exampleItem")}>
+                    <Demo code={codeLevel.default}>
+                        <RegionSelectExampleLevel/>
                     </Demo>
                 </div>
             </div>

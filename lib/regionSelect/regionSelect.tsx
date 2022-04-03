@@ -131,12 +131,27 @@ const RegionSelect: React.FunctionComponent<Props> = (props) => {
 
     return <div {...rest}
                 className={classes(className, sc('regionSelect'), props.layout === 'vertical' ? sc('vertical') : '')}>
-        <Select value={provinceId} options={provinceOptions} onChange={onProvinceChange} width={SelectWidth}
-                className={sc('regionSelectItem')}/>
-        {level >= 2 && <Select value={cityId} options={cityOptions} onChange={onCityChange} width={SelectWidth}
-                               className={sc('regionSelectItem')}/>}
-        {level >= 3 && < Select value={areaId} options={areaOptions} onChange={onAreaChange} width={SelectWidth}
-                                className={sc('regionSelectItem')}/>}
+        <Select
+            value={provinceId}
+            options={provinceOptions}
+            onChange={onProvinceChange}
+            width={SelectWidth}
+            filterable={true}
+            className={sc('regionSelectItem')}/>
+        {level >= 2 && <Select
+            value={cityId}
+            options={cityOptions}
+            filterable={true}
+            onChange={onCityChange}
+            width={SelectWidth}
+            className={sc('regionSelectItem')}/>}
+        {level >= 3 && < Select
+            value={areaId}
+            filterable={true}
+            options={areaOptions}
+            onChange={onAreaChange}
+            width={SelectWidth}
+            className={sc('regionSelectItem')}/>}
     </div>;
 };
 
