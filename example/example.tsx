@@ -17,6 +17,7 @@ import ScaleImageDemo from './scaleImage/scaleImageDemo';
 import SelectDemo from './select/selectDemo';
 import TextareaDemo from './textarea/textareaDemo';
 import RegionSelectDemo from './regionSelect/regionSelectDemo';
+import RadioDemo from './radio/radioDemo';
 
 const logo = require("./common/avatar.jpg").default;
 
@@ -48,7 +49,8 @@ ReactDOM.render(
                 <Route path="/scaleImage" component={ScaleImageDemo}/>
                 <Route path="/select" component={SelectDemo}/>
                 <Route path="/textarea" component={TextareaDemo}/>
-                <Route path="/regionSelectDemo" component={RegionSelectDemo}/>
+                <Route path="/regionSelect" component={RegionSelectDemo}/>
+                <Route path="/radio" component={RadioDemo}/>
             </main>
             {/*<footer className='dodo-footer'>*/}
             {/*    DoDo UI*/}

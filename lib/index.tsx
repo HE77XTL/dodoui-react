@@ -12,3 +12,4 @@ export {default as ScaleImage} from './scaleImage/scaleImage';
 export {default as Select} from './select/select';
 export {default as Textarea} from './textarea/textarea';
 export {default as RegionSelect, RegionInterface} from './regionSelect/regionSelect';
+export {default as Radio} from './radio/radio';

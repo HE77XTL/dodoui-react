@@ -29,37 +29,40 @@ const ExampleAside = () => {
                 Basic
             </dt>
             <dd>
-                <NavLink to="/icon" className='menuItem' activeClassName='active'>icon 图标</NavLink>
+                <NavLink to="/icon" className='menuItem' activeClassName='active'>Icon 图标</NavLink>
             </dd>
             <dd>
-                <NavLink to="/button" className='menuItem' activeClassName='active'>button 按钮</NavLink>
+                <NavLink to="/button" className='menuItem' activeClassName='active'>Button 按钮</NavLink>
             </dd>
             <dd>
-                <NavLink to="/dialog" className='menuItem' activeClassName='active'>dialog 对话框</NavLink>
+                <NavLink to="/dialog" className='menuItem' activeClassName='active'>Dialog 对话框</NavLink>
             </dd>
             <dd>
-                <NavLink to="/layout" className='menuItem' activeClassName='active'>layout 布局</NavLink>
+                <NavLink to="/layout" className='menuItem' activeClassName='active'>Layout 布局</NavLink>
             </dd>
             <dd>
-                <NavLink to="/input" className='menuItem' activeClassName='active'>input 输入框</NavLink>
+                <NavLink to="/input" className='menuItem' activeClassName='active'>Input 输入框</NavLink>
             </dd>
             <dd>
-                <NavLink to="/select" className='menuItem' activeClassName='active'>select 选择器</NavLink>
+                <NavLink to="/radio" className='menuItem' activeClassName='active'>Radio 单选框</NavLink>
             </dd>
             <dd>
-                <NavLink to="/textarea" className='menuItem' activeClassName='active'>textarea 输入框</NavLink>
+                <NavLink to="/select" className='menuItem' activeClassName='active'>Select 选择器</NavLink>
             </dd>
             <dd>
-                <NavLink to="/form" className='menuItem' activeClassName='active'>form 表单</NavLink>
+                <NavLink to="/textarea" className='menuItem' activeClassName='active'>Textarea 输入框</NavLink>
+            </dd>
+            <dd>
+                <NavLink to="/form" className='menuItem' activeClassName='active'>Form 表单</NavLink>
             </dd>
             <dt className='menuItem'>
                 常用组件
             </dt>
             <dd>
-                <NavLink to="/scaleImage" className='menuItem' activeClassName='active'>image等比变宽图片</NavLink>
+                <NavLink to="/scaleImage" className='menuItem' activeClassName='active'>Image等比变宽图片</NavLink>
             </dd>
             <dd>
-                <NavLink to="/regionSelectDemo" className='menuItem' activeClassName='active'>省市区选择</NavLink>
+                <NavLink to="/regionSelect" className='menuItem' activeClassName='active'>RegionSelect 省市区选择</NavLink>
             </dd>
 
         </dl>
