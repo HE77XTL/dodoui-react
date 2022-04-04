@@ -1,9 +1,83 @@
 @import "../index.less";
 
 .dodo-radio {
+    display: inline-block;
+
+    .dodo-radio-layout-wrap {
+        display: flex;
+    }
+
     .dodo-radio-item-wrap {
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        &:not(:last-of-type) {
+            margin-right: 12px;
+        }
+
         &.dodo-radio-active {
             color: @blue
         }
+
+        .dodo-radio-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .dodo-radio-circle {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 1px solid @gray-6;
+            box-sizing: border-box;
+            padding: 2px;
+            border-radius: 8px;
+            position: relative;
+            &:before {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: inline-block;
+                content: '';
+                width: 8px;
+                height: 8px;
+                border-radius: 4px;
+                background: white;
+            }
+            &.dodo-radio-active {
+                border: 1px solid @blue;
+                &:before {
+                    background: @blue;
+                }
+
+
+            }
+        }
+
+        &.dodo-radio-disabled {
+            cursor: not-allowed;
+            color: @gray-6;
+            .dodo-radio-circle {
+                border: 1px solid @gray-6;
+                &.dodo-radio-active {
+                    border: 1px solid @gray-6;
+                    &:before {
+                        background: @gray-6;
+                    }
+                }
+            }
+        }
+
+        .dodo-radio-text {
+            margin-left: 4px;
+        }
+
     }
 }

@@ -25,6 +25,13 @@ const SelectDemo: React.FunctionComponent = () => {
             default: "-",
         },
         {
+            param: "options",
+            explanation: "数据化配置选项内容",
+            type: "Array\<OptionType\>",
+            optional: "-",
+            default: "-",
+        },
+        {
             param: "placeHolder",
             explanation: "占位符",
             type: "string",
@@ -46,6 +53,13 @@ const SelectDemo: React.FunctionComponent = () => {
             optional: "-",
             default: "false",
         },
+        {
+            param: "disabled",
+            explanation: "是否禁用",
+            type: "boolean",
+            optional: "true | false",
+            default: "false",
+        },
 
     ];
     return (
@@ -59,12 +73,12 @@ const SelectDemo: React.FunctionComponent = () => {
                     <div className={sc("tip")}>使用方法</div>
                     <div className={sc("exampleItem")}>
                         <Demo code={code.default}>
-                            <SelectExample />
+                            <SelectExample/>
                         </Demo>
                     </div>
                     <div className={sc("exampleItem")}>
                         <Demo code={codeFilter.default}>
-                            <SelectExampleFilter />
+                            <SelectExampleFilter/>
                         </Demo>
                     </div>
                 </div>

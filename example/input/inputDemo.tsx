@@ -57,7 +57,14 @@ const InputDemo: React.FunctionComponent = () => {
             type: "function",
             optional: "-",
             default: "-",
-        }
+        },
+        {
+            param: "disabled",
+            explanation: "是否禁用",
+            type: "boolean",
+            optional: "true | false",
+            default: "false",
+        },
 
 
 

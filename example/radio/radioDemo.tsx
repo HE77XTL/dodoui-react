@@ -9,12 +9,34 @@ const code = require("!!raw-loader!./radioExample.tsx");
 const sc = scopedClassMaker("doc");
 const attributes = [
     {
-        param:"value",
-        explanation:"用于设置当前选中的值",
-        type:"string | number | boolean",
-        optional:"-",
-        default:"-",
-    }
+        param: "value",
+        explanation: "用于设置当前选中的值",
+        type: "string | number | boolean",
+        optional: "-",
+        default: "-",
+    },
+    {
+        param: "options",
+        explanation: "数据化配置选项内容",
+        type: "Array\<OptionType\>",
+        optional: "-",
+        default: "-",
+    },
+    {
+        param: "onChange",
+        explanation: "选中值发生变化时触发",
+        type: "function(value)",
+        optional: "-",
+        default: "-",
+    },
+    {
+        param: "disabled",
+        explanation: "是否禁用",
+        type: "boolean",
+        optional: "true | false",
+        default: "false",
+    },
+
 ];
 
 const RadioDemo: React.FunctionComponent = () => {

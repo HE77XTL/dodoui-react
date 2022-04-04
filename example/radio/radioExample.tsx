@@ -3,17 +3,24 @@ import {Radio} from '../../lib/index';
 
 const RadioExample = () => {
     return <div>
-        <Radio value={false}>
-            heds
+        <Radio defaultValue={true} disabled={false} onChange={(value) => {
+            console.log('value');
+            console.log(value);
+        }}>
+            报名
         </Radio>
         <div>
-            <Radio name={'age'} options={[{
+            <Radio defaultValue={30} value={19} name={'age'} options={[{
                 label: 'age-1',
                 value: 19
             }, {
                 label: 'age-2',
                 value: 30
-            }]}/>
+            }]} onChange={(value, item) => {
+                console.log('value');
+                console.log(value);
+                console.log(item);
+            }}/>
         </div>
     </div>;
 };
