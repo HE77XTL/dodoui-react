@@ -85,7 +85,7 @@ const Radio: React.FunctionComponent<Props> = (props) => {
                         onClick={() => {
                             onRadioClick(k);
                         }}
-                        className={sc('radio-input')} checked={currentCheck === k.value}/>
+                        className={sc('radio-input')}/>
                     <span className={classes(sc('radio-circle'), currentCheck === k.value ? sc('radio-active') : '')}/>
                     <span className={sc('radio-text')}>{k.label}</span>
                 </label>;

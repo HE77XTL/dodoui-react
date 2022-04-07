@@ -16,6 +16,13 @@ const attributes = [
         default: "-",
     },
     {
+        param: "defaultValue",
+        explanation: "默认选中的值",
+        type: "string | number | boolean",
+        optional: "-",
+        default: "-",
+    },
+    {
         param: "options",
         explanation: "数据化配置选项内容",
         type: "Array\<OptionType\>",

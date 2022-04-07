@@ -3,25 +3,18 @@ import {Radio} from '../../lib/index';
 
 const RadioExample = () => {
     return <div>
-        <Radio defaultValue={true} disabled={false} onChange={(value) => {
-            console.log('value');
-            console.log(value);
-        }}>
-            报名
-        </Radio>
-        <div>
-            <Radio defaultValue={30} value={19} name={'age'} options={[{
-                label: 'age-1',
-                value: 19
+        <Radio value={'B'} options={[
+            {
+                label: '备选项A',
+                value: 'A'
             }, {
-                label: 'age-2',
-                value: 30
-            }]} onChange={(value, item) => {
-                console.log('value');
-                console.log(value);
-                console.log(item);
-            }}/>
-        </div>
+                label: '备选项B',
+                value: 'B'
+            }, {
+                label: '备选项C',
+                value: 'C'
+            }
+        ]}/>
     </div>;
 };
 
