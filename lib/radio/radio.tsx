@@ -2,6 +2,7 @@ import React, {ReactNode, useState} from "react";
 import './radio.less';
 import classes, {scopedClassMaker} from "../helpers/classes";
 
+
 type RadioValue = number | string | boolean;
 
 export interface OptionType {
@@ -19,6 +20,7 @@ interface Props {
     options?: OptionInterface,
     className?: string,
     disabled?: boolean,
+    ableUnCheck?: boolean,
     onChange?: (data: RadioValue, checkedItem?: OptionType) => void,
 }
 
@@ -63,6 +65,9 @@ const Radio: React.FunctionComponent<Props> = (props) => {
     }
 
     function onRadioClick(k: OptionType) {
+        if (!props.ableUnCheck && currentCheck === k.value) {
+            return;
+        }
         setCurrentCheck(currentCheck === k.value ? "" : k.value);
         if (Array.isArray(options)) {
             onChange && onChange(k.value, k);
@@ -93,5 +98,7 @@ const Radio: React.FunctionComponent<Props> = (props) => {
         </div>
     </div>;
 };
-
+Radio.defaultProps = {
+    ableUnCheck: false
+};
 export default Radio;
