@@ -18,6 +18,7 @@ import SelectDemo from './select/selectDemo';
 import TextareaDemo from './textarea/textareaDemo';
 import RegionSelectDemo from './regionSelect/regionSelectDemo';
 import RadioDemo from './radio/radioDemo';
+import CheckboxDemo from './checkbox/checkboxDemo';
 
 const logo = require("./common/avatar.jpg").default;
 
@@ -51,6 +52,7 @@ ReactDOM.render(
                 <Route path="/textarea" component={TextareaDemo}/>
                 <Route path="/regionSelect" component={RegionSelectDemo}/>
                 <Route path="/radio" component={RadioDemo}/>
+                <Route path="/checkbox" component={CheckboxDemo}/>
             </main>
             {/*<footer className='dodo-footer'>*/}
             {/*    DoDo UI*/}

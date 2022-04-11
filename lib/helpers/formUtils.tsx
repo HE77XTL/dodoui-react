@@ -1,4 +1,13 @@
 import {isEmpty} from "./utils";
+import {ReactNode} from "react";
+
+
+export interface CheckOptionType {
+    label: string | number | ReactNode;
+    value: string | number;
+}
+
+export type CheckOptionInterface = Array<CheckOptionType>
 
 export type InputValueType = string | number | undefined ;
 export type SelectValueType = string | number | undefined ;

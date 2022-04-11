@@ -1,0 +1,47 @@
+@import "../index.less";
+
+.dodo-checkbox {
+    .dodo-checkbox-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .dodo-checkbox-layout-wrap {
+        display: flex;
+    }
+
+    .dodo-checkbox-item-wrap {
+        display: flex;
+        align-items: center;
+        &:not(:last-of-type) {
+            margin-right: @padding-md;
+        }
+
+        .dodo-checkbox-square {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 1px solid @gray-6;
+            margin-right: 4px;
+            border-radius: 2px;
+            cursor: pointer;
+            &:hover {
+                border-color: @blue;
+            }
+        }
+
+        &.dodo-checkbox-active {
+            .dodo-checkbox-square {
+                border: 1px solid @blue;
+                background: @blue;
+            }
+        }
+    }
+
+
+}
+

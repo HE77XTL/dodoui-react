@@ -2,8 +2,9 @@ import * as React from "react";
 import {Radio} from '../../lib/index';
 
 const RadioExample = () => {
+
     return <div>
-        <Radio value={'B'} options={[
+        <Radio defaultValue={'B'} options={[
             {
                 label: '备选项A',
                 value: 'A'

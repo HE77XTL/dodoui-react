@@ -47,6 +47,9 @@ const ExampleAside = () => {
                 <NavLink to="/radio" className='menuItem' activeClassName='active'>Radio 单选框</NavLink>
             </dd>
             <dd>
+                <NavLink to="/checkbox" className='menuItem' activeClassName='active'>Checkbox 多选框</NavLink>
+            </dd>
+            <dd>
                 <NavLink to="/select" className='menuItem' activeClassName='active'>Select 选择器</NavLink>
             </dd>
             <dd>

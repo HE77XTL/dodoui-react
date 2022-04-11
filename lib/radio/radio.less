@@ -14,7 +14,7 @@
         cursor: pointer;
 
         &:not(:last-of-type) {
-            margin-right: 12px;
+            margin-right: @padding-md;
         }
 
         &.dodo-radio-active {
@@ -56,8 +56,9 @@
                 &:before {
                     background: @blue;
                 }
-
-
+            }
+            &:hover {
+                border-color: @blue;
             }
         }
 

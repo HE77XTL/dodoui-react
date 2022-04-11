@@ -1,55 +1,61 @@
-import React, {ReactNode, useState} from "react";
+import React, {CSSProperties, useEffect, useState} from "react";
 import './radio.less';
 import classes, {scopedClassMaker} from "../helpers/classes";
-
+import {CheckOptionInterface, CheckOptionType} from "../helpers/formUtils";
 
 type RadioValue = number | string | boolean;
-
-export interface OptionType {
-    label: string | number | ReactNode;
-    value: string | number;
-}
-
-export type OptionInterface = Array<OptionType>
 
 interface Props {
     name?: string,
     value?: RadioValue,
     label?: string | number,
     defaultValue?: RadioValue,
-    options?: OptionInterface,
+    options?: CheckOptionInterface,
     className?: string,
+    style?: CSSProperties,
     disabled?: boolean,
     ableUnCheck?: boolean,
-    onChange?: (data: RadioValue, checkedItem?: OptionType) => void,
+    onChange?: (data: RadioValue, checkedItem?: CheckOptionType) => void,
 }
 
 // 自定义模拟 原生radio 获取更一致的样式表现
 
 const Radio: React.FunctionComponent<Props> = (props) => {
-    const singleChecked = 'dodo-singleChecked';
+    const SINGLE_CHECKED = 'dodo-singleChecked';
     const sc = scopedClassMaker("dodo");
-    const {onChange, name = 'radio', options, className, disabled} = props;
+    const {defaultValue = '', onChange, name = 'radio', options, className, disabled} = props;
     const [currentCheck, setCurrentCheck] = useState(getInitValue());
     const [vdOptions] = useState(getInitOptions());
+
+    useEffect(() => {
+        if (props.value === undefined || props.value === null) {
+            return;
+        } else {
+            if (typeof props.value === 'boolean') {
+                setCurrentCheck(props.value ? SINGLE_CHECKED : '');
+            } else {
+                setCurrentCheck(props.value);
+            }
+        }
+    }, [props.value]);
 
     function getInitValue(): string | number {
         let vdValue;
 
         if (props.value === undefined || props.value === null) {
-            vdValue = props.defaultValue;
+            vdValue = defaultValue;
         } else {
             vdValue = props.value;
         }
 
         if (typeof vdValue === 'boolean') {
-            return vdValue ? singleChecked : '';
+            return vdValue ? SINGLE_CHECKED : '';
         } else {
-            return vdValue || '';
+            return vdValue;
         }
     }
 
-    function getInitOptions(): OptionInterface {
+    function getInitOptions(): CheckOptionInterface {
         if (Array.isArray(options)) {
             return options;
         } else {
@@ -57,18 +63,20 @@ const Radio: React.FunctionComponent<Props> = (props) => {
         }
     }
 
-    function getOptionsBySingle(): OptionType {
+    function getOptionsBySingle(): CheckOptionType {
         return {
             label: props.label ? props.label : props.children,
-            value: singleChecked,
+            value: SINGLE_CHECKED,
         };
     }
 
-    function onRadioClick(k: OptionType) {
+    function onRadioClick(k: CheckOptionType) {
         if (!props.ableUnCheck && currentCheck === k.value) {
             return;
         }
-        setCurrentCheck(currentCheck === k.value ? "" : k.value);
+        if (props.value === undefined || props.value === null) {
+            setCurrentCheck(currentCheck === k.value ? "" : k.value);
+        }
         if (Array.isArray(options)) {
             onChange && onChange(k.value, k);
         } else {
@@ -76,7 +84,7 @@ const Radio: React.FunctionComponent<Props> = (props) => {
         }
     }
 
-    return <div className={classes(className, sc('radio'))}>
+    return <div className={classes(className, sc('radio'))} style={props.style}>
         <div className={sc('radio-layout-wrap')}>
             {vdOptions.map(k => {
                 return <label key={(k.value).toString()}
