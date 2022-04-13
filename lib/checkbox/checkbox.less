@@ -38,6 +38,22 @@
             .dodo-checkbox-square {
                 border: 1px solid @blue;
                 background: @blue;
+                position: relative;
+                &:after {
+                    position: absolute;
+                    left: 5px;
+                    top: 2px;
+                    content: '';
+                    display: block;
+                    width: 3px;
+                    height: 7px;
+                    border: 1px solid white;
+                    transform-origin: center;
+                    transform: rotate(45deg);
+                    border-left: 0;
+                    border-top: 0;
+                    transition: transform .15s ease-in .05s;
+                }
             }
         }
     }

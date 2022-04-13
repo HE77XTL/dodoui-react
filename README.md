@@ -57,3 +57,5 @@ select name 属性（Form 相关的都需要）
 disabled: 属性（Form 相关的都需要）
 
 form 表单一行多项
+
+select 数据量大， 分页，滚动， 搜索， 动态请求
