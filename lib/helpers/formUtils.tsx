@@ -48,7 +48,6 @@ function getLabelFromOptions(value: InputValueType, options: OptionInterface): s
     }
 }
 
-
 export {
     getInitValue,
     getLabelFromOptions

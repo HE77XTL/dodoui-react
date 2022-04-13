@@ -36,13 +36,13 @@ const attributes = [
         optional: "-",
         default: "-",
     },
-    {
-        param: "disabled",
-        explanation: "是否禁用",
-        type: "boolean",
-        optional: "true | false",
-        default: "false",
-    },
+    // {
+    //     param: "disabled",
+    //     explanation: "是否禁用",
+    //     type: "boolean",
+    //     optional: "true | false",
+    //     default: "false",
+    // },
 
 ];
 
