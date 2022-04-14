@@ -58,4 +58,5 @@ disabled: 属性（Form 相关的都需要）
 
 form 表单一行多项
 
-select 数据量大， 分页，滚动， 搜索， 动态请求
+select 数据量大， 分页，滚动， 搜索， 动态请求 下拉箭头,
+	onchange 增加 第二个参数， {value, label}

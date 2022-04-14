@@ -1,16 +1,18 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
 import './form.less';
-import DoInput from "../input/input";
-import {Textarea} from "../../lib/index";
+
+import {Textarea, Select, Input} from "../../lib/index";
 import classes, {scopedClassMaker} from "../helpers/classes";
 import {isEmpty} from "../helpers/utils";
+import {SelectValueType, OptionInterface} from "../helpers/formUtils";
 
 const sc = scopedClassMaker("dodo-form");
 
 
 interface FormFieldDefaultRender {
-    type: 'text' | 'number' | 'password' | 'textarea';
+    type: 'text' | 'number' | 'password' | 'textarea' | 'select',
+    options?: OptionInterface
 }
 
 export interface FormField {
@@ -57,16 +59,21 @@ const Form: React.FunctionComponent<Props> = (props) => {
     const onInputChange = (name: string, value: any) => {
         props.onChange({...props.value, [name]: value});
     };
+    // 先不合并， 后续考虑参数多样化
+    const onSelectChange = (name: string, value: SelectValueType) => {
+        props.onChange({...props.value, [name]: value});
+    };
 
     const getFormItem = (field: FormField) => {
         if (field.input instanceof Function) {
             return field.input();
         } else {
+            const {options = []} = field.input;
             switch (field.input.type) {
                 case "text":
                 case "number":
                 case "password":
-                    return <DoInput
+                    return <Input
                         value={props.value[field.name]}
                         type={field.input.type}
                         onChange={(value) => {
@@ -77,8 +84,14 @@ const Form: React.FunctionComponent<Props> = (props) => {
                         value={props.value[field.name]} onChange={(value) => {
                         onInputChange(field.name, value);
                     }}/>;
+                case "select":
+                    return <Select value={props.value[field.name]}
+                                   options={options}
+                                   onChange={(selectValue) => {
+                                       onSelectChange(field.name, selectValue);
+                                   }}/>;
                 default:
-                    return <DoInput
+                    return <Input
                         value={props.value[field.name]}
                         type={field.input.type}
                         onChange={(value) => {

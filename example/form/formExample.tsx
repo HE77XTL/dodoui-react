@@ -10,12 +10,23 @@ const FormExample = () => {
         password: 'xxxxx',
     });
 
-    const [fields] = useState<FormField[]>([
+    const fields: FormField[] = [
         {name: 'name', label: '用户名', input: {type: 'text'}},
         {name: 'age', label: '年龄', input: {type: 'number'}},
         {name: 'password', label: '密码', input: {type: 'password'}},
         {name: 'profile', label: '简介', input: {type: 'textarea'}},
-    ]);
+        {
+            name: 'city', label: '城市',
+            input: {
+                type: 'select',
+                options: [
+                    {value: '450100', label: '南宁'},
+                    {value: '450300', label: '桂林'},
+                    {value: '450200', label: '柳州'},
+                    ]
+            }
+        },
+    ];
 
 
     const [errors, setErrors] = useState<FormErrors>({});
